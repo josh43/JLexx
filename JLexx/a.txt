@@ -1,0 +1,33 @@
+struct{
+    int x;
+    int y;
+    char * text;
+}
+
+
+BEGIN TOKENS
+            PLUS
+            MINUS
+            SUB
+            TIMES
+            AND
+            SINGLE_OR_BRACKET
+            L_PAREN
+            R_PAREN
+            EQAUL
+            NOT_EQUALS
+            GTE
+            LTE
+            LT
+            GT
+            OPEN_COMMENT
+            CLOSE_COMMENT
+            COLON
+            ID
+            NUM
+            LETTER
+            DIGIT
+END TOKENS
+
+blah not used
+blah
