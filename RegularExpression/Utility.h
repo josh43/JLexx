@@ -4,6 +4,9 @@
 #include "Lexer/Lexer.h"
 using namespace std;
 #define funcError() printf("%s\n line: %d file: %s",__PRETTY_FUNCTION__,__LINE__,__FILE__); printStackTrace()
+//GDB PRETTY PRINTING --- type this
+// set print pretty on
+
 
 #define prettyPrint(xx)
 //printf("@%s \n @%s \n @Line : %d \n @File : %s\n",xx,__PRETTY_FUNCTION__,__LINE__,__FILE__)

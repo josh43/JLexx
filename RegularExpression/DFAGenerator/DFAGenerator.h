@@ -52,6 +52,7 @@ namespace JRegex {
                     stateType |= (unsigned char)ACCEPTING;
                 }
             }
+
             static set<Vertex *> move(DFAStateHelper & helper, unsigned char c){
                 if(!helper.transitions[c]){
                     for(Vertex * v : helper.fromState){
@@ -178,6 +179,10 @@ namespace JRegex {
                    }
                }while(lastState != SENTINEL);
 
+                if(toReturn){
+                    printf("Matched : %s \n",s.substr(start,curr-start).c_str());
+
+                }
                 lastState = 0;
                 start++;
                 curr = start;
@@ -226,6 +231,7 @@ namespace JRegex {
             vector<DFAStateHelper *> createDFA(){
             vector<DFAStateHelper *> list;
             DFAStateHelper * start = new DFAStateHelper(); start->stateType = START;
+
             start->fromState = EpsilonNFAMatcher::epsilonClosure(this->initialNfa.first);
             start->checkAcceptingAgainst(this->initialNfa.second);
 

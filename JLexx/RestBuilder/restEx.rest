@@ -1,0 +1,27 @@
+http://localhost:3000/
+
+Get queryWithProjection string username string pass
+    array arrString
+
+    return "Success" -> dictionary
+    return "Error"   -> string
+    ;
+Get helloWorld
+
+    return "Success" -> dictionary
+    return "Error"   -> string
+    ;
+Get helloWorldComplex string username andPass string pass
+
+    return "Success" -> array
+    return "Error"   -> string
+    ;
+Post helloPost string username string pass
+    POST_PARAMS file cool file pic string fileName dictionary theDict array theArray
+
+    return "Success" -> array
+    return "Error"   -> string
+    ;
+
+
+

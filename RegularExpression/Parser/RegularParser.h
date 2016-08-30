@@ -88,7 +88,8 @@ private:
 
                 } else {
                     release();
-                    throw std::invalid_argument("Bad regular expresssion :(");
+                    printf("Bad regular expresssion %s\n ",this->lexer->input.c_str());
+                    throw std::invalid_argument("");
 //            unexpectedErr("Unable to parse basic Regexp","asd ");
                 }
             }

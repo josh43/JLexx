@@ -12,6 +12,7 @@
 #include "DFABuilderHelper.h"
 #include "../RegularExpression/Lexer/RegularLexer.h"
 #include "../RegularExpression/Parser/RegularParser.h"
+#include "MatchHandler.h"
 
 
 class RegexToDFABuilder{
@@ -26,7 +27,7 @@ public:
 
 
 
-    ~virtual RegexToDFABuilder(){
+    virtual ~RegexToDFABuilder(){
         if(start.first) {
             start.first->removeAll();
         }
@@ -47,11 +48,12 @@ public:
         regexList.push_back(str);
 
     }
-    virtual bool match(string s,bool verbose = true,bool shortestMatch = false){
+    virtual bool match(string & s,bool verbose = true,bool shortestMatch = false, Lexx::DataHandler * handler = nullptr){
         if(shortestMatch){throw std::invalid_argument("I need to implement that feat");}
         unsigned int curr = 0;
         unsigned int start = 0;
         unsigned int lastState =0;
+        Lexx::Data data;
         JRegex::State & last = stateList[0];
         bool toReturn = false;
         s.insert(s.begin(),'\n');
@@ -61,11 +63,20 @@ public:
                 lastState = stateList[lastState][s[curr++]];
             }
             if(stateList[lastState].isAccepting()){
+                data.startOfMatch = start;
+                data.endOfMatch = curr;
+                data.regexNumber = stateList[lastState].acceptingState;
+
                 if(verbose) {
                     printf("\n@BEGIN MATCH\n");
                     printf("\tMatched     : %s \n", s.substr(start, curr - start).c_str());
-                    printf("\tWith Regex  : %u \n", stateList[lastState].acceptingState);
+                    printf("\tWith Regex  : %u \n", data.regexNumber);
                     printf("@END   MATCH\n");
+                }
+
+
+                if(handler){
+                    handler->handleData(data);
                 }
 
                 start+=(curr-start) - 1;
@@ -112,15 +123,25 @@ private:
 
         vector<DFAStateHelper*> list =h.list;
 
+        if(verbose){
+            printf("Printing %lu states \n",list.size());
+        }
         for(const DFAStateHelper * h : list){
             State state(h,maxState++);
+
+            state.set('\0',STATE_SENTINEL);
             unsigned int acceptingState = getMaxStateFrom(h->fromState);
             state.acceptingState = acceptingState;
             stateList.push_back(state);
             if(verbose) {
-                h->printSelf();
+               // h->printSelf();
+                state.printState();
             }
             delete h;
+        }
+        if(verbose) {
+            printf("Done creating states\n");
+
         }
 
     }
@@ -148,12 +169,14 @@ private:
             }
 
         }
+
         return toReturn;
     }
 
     // the way you add to this list will determine
     // the precedence of the regex
     // index 0 == highest precedence
+protected:
 
     bool hasBeenCreated;
     unsigned int maxState;

@@ -47,15 +47,15 @@ namespace JRegex {
             std::string buf;  buf.reserve(size);
             fread(&buf[0],1,size,file);
             if(matcher) {
-                matcher->match(buf, verbosePrinting, shouldMatchLongest);
+                matchedOne = matcher->match(buf, verbosePrinting, shouldMatchLongest);
             }else{
-                dfaMatcher->match(buf,verbosePrinting);
+                matchedOne = dfaMatcher->match(buf,verbosePrinting);
             }
         }else{
             if(matcher) {
-                matcher->match(str, verbosePrinting, shouldMatchLongest);
+                matchedOne = matcher->match(str, verbosePrinting, shouldMatchLongest);
             }else{
-                dfaMatcher->match(str,verbosePrinting);
+                matchedOne = dfaMatcher->match(str,verbosePrinting);
             }
 
         }
@@ -95,7 +95,7 @@ namespace JRegex {
     }
 
     bool Regex::result() {
-        return false;
+        return matchedOne;
     }
 
 
@@ -134,7 +134,7 @@ namespace JRegex {
         str = std::move(buffer);
     }
     Regex::Regex(std::string str,bool caseSensative ) {
-
+        matchedOne = false;
         verbosePrinting = false;
         shouldMatchLongest = true;
         out = NULL;

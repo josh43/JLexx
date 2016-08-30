@@ -34,6 +34,7 @@ namespace JRegex {
         Regex(std::string str,bool caseSensative);
         bool verbosePrinting;
         bool shouldMatchLongest;
+        bool matchedOne;
         std::string toMatch;
         FILE * out;
         EpsilonNFAMatcher * matcher;

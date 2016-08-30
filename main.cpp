@@ -1,26 +1,52 @@
 #include <iostream>
 #include "JLexx/RegexToDFABuilder.h"
-
+#include "JLexx/LexLoader/Parser.h"
+#include "JLexx/LexLoader/Generator.h"
+#include "JLexx/RestBuilder/RestBuilder.h"
+#include "JLexx/RestBuilder/Test/Test.h"
+#include "RegularExpression/Regex/Regex.h"
 
 using namespace std;
 
 int main() {
 
 
-    RegexToDFABuilder lexx;
-    RegexToDFABuilder lexx2;
-    RegexToDFABuilder lexx3;
-   //lexx.add("abc").add("abc").create();
-   //lexx2.add("abc").add("abcd").create();
-    lexx3.add(".*").add("[a-z]+").create();
 
-    lexx3.match("a",true);
-    lexx3.match("ab",true);
-    lexx3.match("abc",true);
-    lexx3.match("abcd",true);
-    lexx3.match("aaaaaabcdabcd",true);
-    lexx3.match("asda abc abcdef",true);
-    lexx3.match("AAAAAAAAAAAf",true);
+
+
+
+
+
+
+
+
+
+  //    Rest::testPrintRoute();
+//
+//
+  //  Rest::RestGenerator rg;
+  //  Rest::RestBuilder b(rg,"/Users/josh/ClionProjects/JLexx/JLexx/RestBuilder/restEx.rest");
+//
+  //  rg.generateCode();
+//
+//
+//
+  //  rg.printAll();
+
+    Lexx::JLexx lex;
+
+    char * pwd = nullptr;
+    pwd = getenv("PWD");
+    if(pwd == nullptr){
+        printf("pwd env variable was nullptr \n :(");
+        exit(0);
+    }else{
+        printf("pwd = %s\n",pwd);
+    }
+    lex.match(FileLoader::fileToString("/Users/josh/ClionProjects/JLexx/JLexx/a.txt",true));
+
+   //Generator g("/Users/josh/ClionProjects/JLexx/JLexx/a.txt");
+
     cout << "Hello, World!" << endl;
     return 0;
 }

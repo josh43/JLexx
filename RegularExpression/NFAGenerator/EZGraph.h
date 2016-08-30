@@ -54,20 +54,31 @@ namespace JRegex {
 
     struct BracketEdge : public Edge {
         unsigned char end;
+        bool table[256];
         bool negated;
 
         BracketEdge(unsigned char start, unsigned char thEnd, bool neg) : Edge(start) {
+            for(int i = 0; i < 256 ; i ++){
+                table[i] = false;
+            }
+
             negated = neg;
             end = thEnd;
         }
-
+        void setTableAt(unsigned int i){
+            table[i] = true;
+        }
         BracketEdge() : Edge() {
+            for(int i = 0; i < 256 ; i ++){
+                table[i] = false;
+            }
             negated = false;
 
         }
 
         bool canTransitionOn(unsigned char c) override {
-            return negated ^ ((c >= val) && (c <= end));
+            //return negated ^ ((c >= val) && (c <= end));
+            return negated ^ table[c];
         }
     };
 

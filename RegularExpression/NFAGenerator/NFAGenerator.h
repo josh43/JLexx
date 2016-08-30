@@ -102,20 +102,24 @@ namespace JRegex {
     private:
 
         VPair getSpacePair(){
-           // Vertex * space = new Vertex(' ');
-           // Vertex * tab = new Vertex('\t');
+            Vertex * end = Vertex::createEpsilon();
+            Vertex * space = new Vertex(' ');
+            Vertex * tab = new Vertex('\t');
             Vertex * newLine = new Vertex('\n');
-            newLine->edge->v1 = Vertex::createEpsilon();
-            //VPair first = orVertices(VPair(space,space),VPair(tab,tab),true);
-            //Vertex * start = Vertex::createEpsilon();
-            //start->edge->v1 = first.first;
-            //start->edge->v2 = newLine;
-            //newLine->edge->v1 = first.second;
-//
-            //first.first = start;
+            space->edge->v1 = end;
+            tab->edge->v1 = end;
+            newLine->edge->v1 = end;
+            Vertex * firstOr = Vertex::createEpsilon();
+            firstOr->edge->v1 = space;
+            firstOr->edge->v2 = tab;
+            Vertex * toReturn = Vertex::createEpsilon();
+            toReturn->edge->v1 = firstOr;
+            toReturn->edge->v2 = newLine;
 
-            numVertices+=1;
-            return VPair(newLine,newLine->edge->v1);
+//
+
+            numVertices+=6;
+            return VPair(toReturn,end);
 
         }
         void createGraph(RegularNode *curr) {
@@ -279,6 +283,63 @@ namespace JRegex {
 
         }
 
+        pair<Vertex *, Vertex *> bracketOr(VPair p, Vertex * toOr){
+            Vertex * newStart = Vertex::createEpsilon();
+            newStart->edge->v1 = p.first;
+            newStart->edge->v2 = toOr;
+            toOr->edge->v1 = p.second;
+            return VPair(newStart,p.second);
+        };
+
+        pair<Vertex *, Vertex *> createBracketExpression(RegularNode *node) {
+            pair<Vertex *, Vertex *> toReturn = {nullptr, nullptr};
+
+
+            Vertex * theEnd = Vertex::createEpsilon();
+            Vertex *curr = Vertex::createEpsilon();
+
+            delete curr->edge;
+            curr->edge = new BracketEdge();
+            if (node->nodeType & NEGATED_BRACKET) {
+                (dynamic_cast<BracketEdge *>(curr->edge))->negated = true;
+            }
+            BracketEdge * bEdge =dynamic_cast<BracketEdge*>(curr->edge);
+            toReturn.first = curr;
+            toReturn.second = theEnd;
+            curr->edge->v1 = theEnd;
+            unsigned int i = 0;
+            do {
+                if (i + 2 < node->regularData.size()) {
+                    if (node->regularData[i + 1] == '-') {
+                        if (node->regularData[i] > node->regularData[i+2]) {
+                            throw std::invalid_argument("You cannot have a bracket range in the form of b-a where b > a\n");
+                        }
+                        for(unsigned char c = node->regularData[i]; c <= node->regularData[i+2]; c++) {
+                            bEdge->setTableAt(c);
+
+                        }
+                        i += 2;
+                    } else {
+                        bEdge->setTableAt(node->regularData[i]);
+                    }
+                }else {
+                    bEdge->setTableAt(node->regularData[i]);
+                }
+
+
+                i++;
+            } while (i < node->regularData.size());
+
+
+
+
+            specialExpression(node->nodeType, toReturn.first, toReturn.second);
+
+
+            return toReturn;
+
+        };
+        /* OLD WAY
         pair<Vertex *, Vertex *> createBracketExpression(RegularNode *node) {
             pair<Vertex *, Vertex *> toReturn = {nullptr, nullptr};
             bool negated = false;
@@ -286,8 +347,9 @@ namespace JRegex {
             if (node->nodeType & NEGATED_BRACKET) {
                 negated = true;
             }
+
+            Vertex * theEnd = Vertex::createEpsilon();
             unsigned int i = 0;
-            Vertex *head = nullptr;
             do {
                 Vertex *curr = nullptr;
                 bool basicSetter = false;
@@ -298,10 +360,12 @@ namespace JRegex {
                         delete curr->edge;
                         curr->edge = new BracketEdge(node->regularData[i], node->regularData[i + 2], negated);
                         if (shouldSet) {
-                            head = curr;
+                            toReturn.first = curr;
+                            curr->edge->v1 = theEnd;
+                            toReturn.second = theEnd;
                             shouldSet = false;
                         } else {
-                            toReturn = orVertices(toReturn, VPair(head, curr));
+                            toReturn = bracketOr(toReturn, curr);
                         }
                         i += 2;
                         numVertices++;
@@ -316,10 +380,12 @@ namespace JRegex {
                     delete curr->edge;
                     curr->edge = new BracketEdge(node->regularData[i], node->regularData[i], negated);
                     if (shouldSet) {
-                        head = curr;
+                        toReturn.first = curr;
+                        curr->edge->v1 = theEnd;
+                        toReturn.second = theEnd;
                         shouldSet = false;
                     } else {
-                        toReturn = orVertices(toReturn, VPair(head, curr));
+                        toReturn = bracketOr(toReturn, curr);
                     }
                     numVertices++;
                 }
@@ -329,13 +395,14 @@ namespace JRegex {
                 i++;
             } while (i < node->regularData.size());
 
-            if (toReturn.first == nullptr) {
-                Vertex *end = Vertex::createEpsilon();
-                head->edge->v1 = end;
-                toReturn.first = head;
-                toReturn.second = end;
-                numVertices++;
-            }
+           // if (toReturn.first == nullptr) {
+           //     Vertex *end = Vertex::createEpsilon();
+           //     head->edge->v1 = end;
+           //     toReturn.first = head;
+           //     toReturn.second = end;
+           //     numVertices++;
+           // }
+
 
             specialExpression(node->nodeType, toReturn.first, toReturn.second);
 
@@ -343,6 +410,7 @@ namespace JRegex {
             return toReturn;
 
         };
+         */
 
         pair<Vertex *, Vertex *> getDataNodeFrom(RegularNode *node) {
             if (node == nullptr) {

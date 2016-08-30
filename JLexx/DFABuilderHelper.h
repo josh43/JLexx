@@ -57,27 +57,31 @@ namespace JRegex {
             }
         }
         static set<Vertex *> move(DFAStateHelper & helper, unsigned char c){
+            bool needToRecalculateClosure = false;
             if(!helper.transitions[c]){
+                helper.transitions[c] = new set<Vertex *>();
+                needToRecalculateClosure = true;
                 for(Vertex * v : helper.fromState){
                     if(v->edge->canTransitionOn(c)){
-                        if(!helper.transitions[c]) {
-                            helper.transitions[c] = new set<Vertex *>();
+                        if(v->edge->v1 != nullptr) {
+                            helper.transitions[c]->insert(v->edge->v1);
                         }
-                        helper.transitions[c]->insert(v->edge->v1);
 
                     }
                 }
             }
-            if(helper.transitions[c]==nullptr){
-                return set<Vertex *>();
+           //if(helper.transitions[c]==nullptr){
+           //    return set<Vertex *>();
+           //}
+            if(needToRecalculateClosure) {
+                set<Vertex *> final;
+                for (Vertex *v : *helper.transitions[c]) {
+                    set<Vertex *> res = EpsilonNFAMatcher::epsilonClosure(v);
+                    final.insert(res.begin(), res.end());
+                }
+                helper.transitions[c]->insert(final.begin(), final.end());
+                helper.transitionsUsed.insert(c);
             }
-            set<Vertex *> final;
-            for(Vertex * v : *helper.transitions[c]){
-                set<Vertex *> res = EpsilonNFAMatcher::epsilonClosure(v);
-                final.insert(res.begin(),res.end());
-            }
-            helper.transitions[c]->insert(final.begin(),final.end());
-            helper.transitionsUsed.insert(c);
             return *helper.transitions[c];
         }
 
@@ -126,6 +130,38 @@ namespace JRegex {
                 jump[pair.first] = pair.second;
             }
         }
+        void printState(bool printTransitionsOnly = true){
+            printf("Printing State %d\n\n",this->stateNumber);
+            printf("Accepting State %d\n",this->acceptingState);
+            unsigned int numUsed = 0;
+            for(unsigned int c = 0; c < 256; c ++){
+                if(((numUsed + 11) % 10 )== 0){
+                    printf("\n");
+                }
+
+                if(jump[c] == STATE_SENTINEL){
+                    if(!printTransitionsOnly) {
+                        printf("%c = \"\" , ", c, jump[c]);
+                        numUsed++;
+                    }
+
+                }else {
+                    if(c == '\n'){
+                        printf("\\n = %u , ", jump[c]);
+                    }else if(c == '\t'){
+                        printf("\\t = %u , ", jump[c]);
+                    }else if(c == ' '){
+
+                        printf("SPACE = %u, ", jump[c]);
+
+                    }else {
+                        printf("%c = %u , ", c, jump[c]);
+                    }
+                    numUsed++;
+                }
+            }
+            printf("End Printing State %d\n\n",this->stateNumber);
+        }
         State(unsigned int stateNo){
             acceptingState = STATE_SENTINEL;
             info = STATE_REGULAR;
@@ -135,6 +171,9 @@ namespace JRegex {
 
         State():State(0){ }
         // want to go into something divisible by 8
+        void set(unsigned  char c, const unsigned int i1){
+            jump[c] = i1;
+        }
     };
     class DFAHelper {
 
@@ -222,6 +261,9 @@ namespace JRegex {
                     set<Vertex *> verts;
                     if(dynamic_cast<BracketEdge *>(v->edge)){
                         BracketEdge * b = dynamic_cast<BracketEdge *>(v->edge);
+                        //set<Vertex *> res = EpsilonNFAMatcher::epsilonClosure(v->edge->v1);
+                        //set<Vertex *> resTwo = EpsilonNFAMatcher::epsilonClosure(v->edge->v2);
+
                         for(unsigned int i = 0; i < 256; i ++) {
                             if(b->canTransitionOn(i)) {
                                 verts = DFAStateHelper::move(*curr, i);
@@ -231,6 +273,9 @@ namespace JRegex {
                                     toPush->checkAcceptingAgainst(acceptList);
                                     list.push_back(toPush);
                                     statesLeft.push(toPush);
+                                }else{
+                                  //  curr->transitions[v->edge->val]->insert(res.begin(),res.end());
+                                  //  curr->transitions[v->edge->val]->insert(resTwo.begin(),resTwo.end());
                                 }
                             }
                         }
@@ -242,6 +287,9 @@ namespace JRegex {
                             toPush->checkAcceptingAgainst(acceptList);
                             list.push_back(toPush);
                             statesLeft.push(toPush);
+                        }else{
+                           // set<Vertex *> res = EpsilonNFAMatcher::epsilonClosure(v);
+                           // curr->transitions[v->edge->val]->insert(res.begin(),res.end());
                         }
 
                     }// else do nada
@@ -254,6 +302,8 @@ namespace JRegex {
 
 
     };
+
+
 };
 
 #endif //JLEXX_DFABUILDERHELPER_H

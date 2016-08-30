@@ -19,20 +19,16 @@ namespace Lexx {
     };
     class DataHandler{
     public:
-        virtual void start();
         virtual void handleData(Data & d) = 0;
-        virtual void finish() = 0;
     };
 
     class Tokenizer : public DataHandler{
     private:
 
     public:
-        virtual void start() override;
 
         virtual void handleData(Data &d) override;
 
-        virtual void finish() override;
     };
 
 
