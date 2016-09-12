@@ -10,6 +10,7 @@
 #include <stack>
 #include <deque>
 #include "../Lexer/RegularToken.h"
+#include <stdexcept>
 static const unsigned int OR_NODE =         1 << 0;
 static const unsigned int STAR_NODE =       1 << 1;
 static const unsigned int PLUS_NODE =       1 << 2;

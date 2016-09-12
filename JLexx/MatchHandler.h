@@ -20,6 +20,7 @@ namespace Lexx {
     class DataHandler{
     public:
         virtual void handleData(Data & d) = 0;
+        virtual bool shouldStop() = 0;
     };
 
     class Tokenizer : public DataHandler{
@@ -28,6 +29,10 @@ namespace Lexx {
     public:
 
         virtual void handleData(Data &d) override;
+
+        virtual bool shouldStop() override {
+            return false;
+        }
 
     };
 

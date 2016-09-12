@@ -7,6 +7,8 @@
 
 #include "RegularToken.h"
 #include <limits.h>
+#include <stdexcept>
+
 
 using namespace std;
 #define UNRECOGNIZED_TOKEN() \

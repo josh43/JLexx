@@ -70,10 +70,18 @@ namespace JRegex {
                     }
                 }
             }
+
+                union JVal{
+                    int x;
+                    float y;
+                    char * text;
+                }JT;
            //if(helper.transitions[c]==nullptr){
            //    return set<Vertex *>();
            //}
             if(needToRecalculateClosure) {
+                JVal v1;
+
                 set<Vertex *> final;
                 for (Vertex *v : *helper.transitions[c]) {
                     set<Vertex *> res = EpsilonNFAMatcher::epsilonClosure(v);

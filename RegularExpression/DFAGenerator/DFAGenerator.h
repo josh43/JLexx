@@ -6,6 +6,8 @@
 #define LANGUAGEIMPLEMENTATIONPATTERNS_DFAGENERATOR_H
 
 #include <map>
+#include <limits>
+
 #include "../NFAGenerator/EZGraph.h"
 #include "../NFAGenerator/NFAGenerator.h"
 #include "../Utility.h"

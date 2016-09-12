@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#debugging uncomment
+#makeDir=""
+makeDir="/usr/share/JLexx/LexLoader/"
+currDir=${PWD}
+cd ${makeDir}
+
+#debugging uncomment
+#make
+make makeGen
+./LexGenMain < $1 > /dev/null
+make clean

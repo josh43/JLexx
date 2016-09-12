@@ -58,11 +58,16 @@ public:
         bool toReturn = false;
         s.insert(s.begin(),'\n');
         s.push_back('\n');
+        unsigned int lastAcceptingState;
         while(start  < s.length()){
+            lastAcceptingState = JRegex::STATE_SENTINEL;
             while((stateList[lastState][s[curr]]) != JRegex::STATE_SENTINEL){
                 lastState = stateList[lastState][s[curr++]];
+                if(stateList[lastState].isAccepting()){
+                    lastAcceptingState = lastState;
+                }
             }
-            if(stateList[lastState].isAccepting()){
+            if(lastAcceptingState != JRegex::STATE_SENTINEL){
                 data.startOfMatch = start;
                 data.endOfMatch = curr;
                 data.regexNumber = stateList[lastState].acceptingState;
@@ -77,6 +82,9 @@ public:
 
                 if(handler){
                     handler->handleData(data);
+                    if(handler->shouldStop()){
+                        return true;
+                    }
                 }
 
                 start+=(curr-start) - 1;
@@ -121,7 +129,7 @@ private:
         DFAHelper h(start, acceptList);
         stateList.reserve(1024);// roughly 1 mb
 
-        vector<DFAStateHelper*> list =h.list;
+        const vector<DFAStateHelper*> & list =h.list;
 
         if(verbose){
             printf("Printing %lu states \n",list.size());
@@ -130,7 +138,7 @@ private:
             State state(h,maxState++);
 
             state.set('\0',STATE_SENTINEL);
-            unsigned int acceptingState = getMaxStateFrom(h->fromState);
+            unsigned int acceptingState = getMaxPriorityState(h->fromState);
             state.acceptingState = acceptingState;
             stateList.push_back(state);
             if(verbose) {
@@ -159,7 +167,7 @@ private:
 
     }
 
-    unsigned int getMaxStateFrom(const std::set<JRegex::Vertex *> & s){
+    unsigned int getMaxPriorityState(const std::set<JRegex::Vertex *> & s){
         unsigned int toReturn = JRegex::STATE_SENTINEL;
         for(JRegex::Vertex * v : s){
             if(acceptList.find(v) != acceptList.end()) {

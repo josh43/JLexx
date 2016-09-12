@@ -11,13 +11,14 @@
 #include <assert.h>
 #include "../Lexer/Lexer.h"
 #include "../Lexer/RegularToken.h"
+#include <stdexcept>
 
 using namespace std;
 class Parser {
 public:
     Lexer  * lexer;
     unsigned int curr;
-    const unsigned int FAILED =  numeric_limits<unsigned int>::max() -1;
+    const unsigned int FAILED =  std::numeric_limits<unsigned int>::max() -1;
     vector<RegularToken> lookAhead;
     vector<unsigned int> markers;
     unordered_map<unsigned int,unsigned int> map;

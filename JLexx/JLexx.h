@@ -10,6 +10,8 @@
 namespace Lexx {
     class JLexx : public RegexToDFABuilder , public DataHandler{
 
+
+       
     private:
         std::string myString;
     protected:
@@ -17,15 +19,18 @@ namespace Lexx {
 
         // DEFINE TOKEN TYPES HERE
         enum TokenType : unsigned int{
-            INCLUDE=               0,
-            STRUCT                  ,
-            BEGINTOK                ,
+
+            BEGINTOK             = 0,
             ENDTOK                  ,
             BEGINDEF                ,
             ENDDEF                  ,
+            COMMENT                 ,
+            BIGCOMMENT              ,
+            ENDOFACTION             ,
             TOKEN_OR_REGEX          ,
             REGEX_STMT              ,
             WHITESPACE              ,
+
             OTHER                   ,
             AZ                   ,
 
@@ -39,15 +44,18 @@ namespace Lexx {
         // #include [^\n]+[\n]"  is, this could be just
 
         std::map<TT,std::string> tokenToRegex ={
-                {INCLUDE            ,"#include [^\n]+[\n]"},
-                {STRUCT             ,"struct[ ]*{[^}]*}"},
+
                 {BEGINTOK           ,"BEGIN TOKENS"},
                 {ENDTOK             ,"END TOKENS"},
                 {BEGINDEF           ,"BEGIN DEF"},
                 {ENDDEF             ,"END DEF"}, //5
+                {COMMENT            ,"//[^\n]*[\n]"}, //
+                {BIGCOMMENT         ,"/*[^*/]*[*/]"},
+                {ENDOFACTION        ,"}()"}, //5
                 {TOKEN_OR_REGEX     ,"[^\n]+"}, // just have a function that removes all trailing whitespace
                 {REGEX_STMT         ,"{[^}]+}"},
                 {WHITESPACE         ,"[\t\n ]+"}, //
+                 //
                 {OTHER              ,"."},
         };
 
@@ -81,6 +89,10 @@ namespace Lexx {
         virtual ~JLexx() {
 
             int x = 3;
+        }
+
+        virtual bool shouldStop() override {
+            return false;
         }
 
     };

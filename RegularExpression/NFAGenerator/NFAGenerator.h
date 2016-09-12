@@ -339,78 +339,7 @@ namespace JRegex {
             return toReturn;
 
         };
-        /* OLD WAY
-        pair<Vertex *, Vertex *> createBracketExpression(RegularNode *node) {
-            pair<Vertex *, Vertex *> toReturn = {nullptr, nullptr};
-            bool negated = false;
-            bool shouldSet = true;
-            if (node->nodeType & NEGATED_BRACKET) {
-                negated = true;
-            }
 
-            Vertex * theEnd = Vertex::createEpsilon();
-            unsigned int i = 0;
-            do {
-                Vertex *curr = nullptr;
-                bool basicSetter = false;
-                if (i + 2 < node->regularData.size()) {
-                    if (node->regularData[i + 1] == '-') {
-                        curr = Vertex::createEpsilon();
-
-                        delete curr->edge;
-                        curr->edge = new BracketEdge(node->regularData[i], node->regularData[i + 2], negated);
-                        if (shouldSet) {
-                            toReturn.first = curr;
-                            curr->edge->v1 = theEnd;
-                            toReturn.second = theEnd;
-                            shouldSet = false;
-                        } else {
-                            toReturn = bracketOr(toReturn, curr);
-                        }
-                        i += 2;
-                        numVertices++;
-                    } else {
-                        basicSetter = true;
-                    }
-                } else {
-                    basicSetter = true;
-                }
-                if (basicSetter) {
-                    curr = Vertex::createEpsilon();
-                    delete curr->edge;
-                    curr->edge = new BracketEdge(node->regularData[i], node->regularData[i], negated);
-                    if (shouldSet) {
-                        toReturn.first = curr;
-                        curr->edge->v1 = theEnd;
-                        toReturn.second = theEnd;
-                        shouldSet = false;
-                    } else {
-                        toReturn = bracketOr(toReturn, curr);
-                    }
-                    numVertices++;
-                }
-                if (curr->edge->val > dynamic_cast<BracketEdge *>(curr->edge)->end) {
-                    throw std::invalid_argument("You cannot have a bracket range in the form of a-b where b < a\n");
-                }
-                i++;
-            } while (i < node->regularData.size());
-
-           // if (toReturn.first == nullptr) {
-           //     Vertex *end = Vertex::createEpsilon();
-           //     head->edge->v1 = end;
-           //     toReturn.first = head;
-           //     toReturn.second = end;
-           //     numVertices++;
-           // }
-
-
-            specialExpression(node->nodeType, toReturn.first, toReturn.second);
-
-
-            return toReturn;
-
-        };
-         */
 
         pair<Vertex *, Vertex *> getDataNodeFrom(RegularNode *node) {
             if (node == nullptr) {

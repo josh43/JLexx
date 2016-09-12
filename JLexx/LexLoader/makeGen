@@ -1,0 +1,20 @@
+#use make --debug=v
+# if you care about the size of the project it is currently
+# cat ./*/*h | wc -l ====== 1928 lines
+#directories to search for
+#sudo cp -f -R ../RegularExpression/*  /usr/share/JRegexp
+#sudo cp -f -R ../JLexx/*              /usr/share/JLexx
+
+JRegexp="/usr/share/JRegexp"
+JLexx="/usr/share/JLexx"
+CC=g++
+FLAGS = -Wall -std=c++11
+
+JLexx : LexGenMain.o Utility.o
+	$(CC) $(FLAGS) LexGenMain.o Utility.o -o LexGenMain
+LexGenMain.o:  ${JRegexp}/RegexToDFABuilder.h ${JLexx}/LexLoader/LexGenerator.h
+	$(CC) $(FLAGS) -c ${JLexx}/LexGenMain.cpp
+Utility.o: ${JRegexp}/RegularExpression/Utility.h
+	$(CC) $(FLAGS) -c ${JRegexp}/RegularExpression/Utility.cpp
+clean:
+	rm *.o LexGenMain

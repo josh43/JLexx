@@ -8,6 +8,8 @@
 #include "EZGraph.h"
 #include "../Utility.h"
 #include <string>
+#include <stdexcept>
+#include <limits>
 namespace JRegex {
     using namespace std;
 class EpsilonNFAMatcher {

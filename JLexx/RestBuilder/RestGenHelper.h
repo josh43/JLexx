@@ -23,7 +23,29 @@ string getObjCType(std::string text){
 
     return theMap[text];
 }
-
+/*
+ * I am generating random bytes here we g ooooo 234235-90
+ * 'a;lsdlkflldksfl;dsfl oipwefpo oiasdpo kAP;LSD ;LSDLKJFASDF
+ * SALDF;KSA;LDFKASL;DF SDF9;FWKELFK WEF WK;LK2398SAF ASL;KDLASD
+ * ASDLK; ASD;LKASD
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * \R\N
+ * asld;l;aksdlklaksdl;k
+ * as;ldk;lasd
+ * l340923849852650-98
+ * `
+ * `
+ * `asdk;lk
+ *
+ *
+ */
 void setFiles(string verb,unsigned int & jsFileNo,unsigned int &objFileNo){
     switch(verb[0]){
         case'g':{
