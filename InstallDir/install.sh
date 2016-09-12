@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-make JLex
-
 sudo cp ../jlgen /usr/bin/jlGen
 sudo chown root:${USER} /usr/bin/jlGen
 sudo cp ../LexRunner/jlrun /usr/bin/jlRun

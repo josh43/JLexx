@@ -12,29 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e396bd4-3741-4a08-aefd-10b20adccc38" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/InstallDir/install.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/JLexx/LexLoader/a.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/JLexx/LexLoader/makeGen" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/Generator.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/Generator.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/Parser.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/a.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/JLexx.iml" afterPath="$PROJECT_DIR$/.idea/JLexx.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/DFABuilderHelper.h" afterPath="$PROJECT_DIR$/JLexx/DFABuilderHelper.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/FileLoader.h" afterPath="$PROJECT_DIR$/JLexx/FileLoader.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/JLexx.h" afterPath="$PROJECT_DIR$/JLexx/JLexx.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/MatchHandler.h" afterPath="$PROJECT_DIR$/JLexx/MatchHandler.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/RegexToDFABuilder.h" afterPath="$PROJECT_DIR$/JLexx/RegexToDFABuilder.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/RestBuilder/RestGenHelper.h" afterPath="$PROJECT_DIR$/JLexx/RestBuilder/RestGenHelper.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h" afterPath="$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/Lexer/Lexer.h" afterPath="$PROJECT_DIR$/RegularExpression/Lexer/Lexer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h" afterPath="$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h" afterPath="$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/Parser/Parser.h" afterPath="$PROJECT_DIR$/RegularExpression/Parser/Parser.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/Parser/RegularTreeNodes.h" afterPath="$PROJECT_DIR$/RegularExpression/Parser/RegularTreeNodes.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InstallDir/install.sh" afterPath="$PROJECT_DIR$/InstallDir/install.sh" />
     </list>
     <ignored path="JLexx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -223,11 +201,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="install.sh" pinned="false" current-in-tab="false">
+          <file leaf-file-name="install.sh" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/InstallDir/install.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                <state relative-caret-position="15">
+                  <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -266,7 +244,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="jlrun" pinned="false" current-in-tab="true">
+          <file leaf-file-name="jlrun" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="165">
@@ -388,11 +366,11 @@
         <option value="$PROJECT_DIR$/JLexx/LexLoader/InstallDir/makeGen" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/InstallDir/install.sh" />
         <option value="$PROJECT_DIR$/InstallDir/makeGen" />
-        <option value="$PROJECT_DIR$/InstallDir/install.sh" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/makeGen" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makeRun" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/jlgen" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun" />
+        <option value="$PROJECT_DIR$/InstallDir/install.sh" />
       </list>
     </option>
   </component>
@@ -505,6 +483,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="TestVSGrep" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JLexx" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JLexx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InstallDir" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -747,12 +739,12 @@
       <workItem from="1473555276244" duration="24709000" />
       <workItem from="1473641741914" duration="3554000" />
       <workItem from="1473645302739" duration="8221000" />
-      <workItem from="1473708240672" duration="5369000" />
+      <workItem from="1473708240672" duration="5461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109739000" />
+    <option name="totallyTimeSpent" value="109831000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
@@ -1223,14 +1215,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/InstallDir/install.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/makeGen">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1285,6 +1269,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InstallDir/install.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
