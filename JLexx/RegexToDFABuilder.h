@@ -39,7 +39,7 @@ public:
             throw std::invalid_argument("This Converter has already been created");
         }else{
             hasBeenCreated = true;
-            createStates(true);
+            createStates(verbose);
         }
 
         return *this;

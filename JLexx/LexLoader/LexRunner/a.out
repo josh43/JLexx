@@ -1,0 +1,652 @@
+
+About to use the dfa to match against // From here all the way down tocan be any valid c/c++!!
+#include <stdlib.h>
+#include <string.h>
+
+// put whatever you want
+uint unique;
+uint wordCount =0;
+uint lineCount =0;
+// insert very useful function ... :|
+void helloWorld(){
+ printf("Hello world");
+}
+/* TYPE must be called JVAL */
+union JVAL {
+    int x;
+    int y;
+    char * text;
+}jval;
+
+/* instance must be called jval */
+/*
+    When matched it will return
+    struct {
+        char * text;  // this will only be a pointer to the start of the match
+        uint start;   // thus to get the text you want to substr(text,start,end)
+        uint end;     // It is this way to allow more customization later on!
+    }jmatch;
+
+*/
+
+
+
+// There will be a 256 offset because I want to allow returning of characters
+// like tokens ex return a which is 97 (I think)
+// Note that NUM will be defined as   1 << 8 + 1
+// Note that WORD will be defined as  1 << 8 + 2
+BEGIN TOKENS
+    NUMB         // == 257
+    MINUS        // == 258
+    WORD        // == 258
+          // == 258
+
+
+
+
+BEGIN DEFINITIONS
+/**/
+/****/
+/* what
+*/
+/*
+    definitions in the form of
+    +|a|b        {ACTION;}
+     means when matching + or a or b do ACTION
+
+*/
+
+/*Note it is wise to use the escape sequence for special characters or to place them in brackets if possible
+    ex. do \\- to match a dash
+    you have to escape the escape character so it can be read :|
+    [x] or \x will match an x  from the set X = {),(,\,|,[,],.} and others
+
+*/
+
+     [\n]                           {
+                                        printf("matched a newline\n");return jmatch.text[0];
+                                    }
+     \\)+|\\.|\\-|}|{|\\||[\\]      {
+                                        printf("matched a simple character\n");
+                                        return jmatch.text[0];
+                                    }  // note this will create a copy of the character so it is ok to return but if you would return a JMatch.text this value could change later on!}
+
+     \\-                            {
+                                        printf("matched a minus\n");
+                                        return MINUS;
+                                    }
+
+     [a-zA-Z][a-zA-Z0-9]+           {
+                                      printf("matched a word\n");jval.text = strndup(jmatch.text,jmatch.end-jmatch.start); // Set JVal
+                                      return WORD;
+                                    }
+     [0-9]+                         {
+                                        printf("matched an integer\n");
+                                        jval.x = atoi(jmatch.text);
+                                        return NUMB;
+                                    }
+
+     [@]+                           { return NUMB;}
+     .                              {return jmatch.text[0];} // not found
+
+BEGIN MAIN
+
+void handle(uint type){
+            switch(type){
+                case NUMB:{
+                    break;
+                }case MINUS:{
+                    break;
+                }case WORD:{
+                    wordCount++;
+                    break;
+                }case '\n':{
+                    lineCount++;
+                }
+            }
+}
+// If main is defined than JYacc will not be used
+int main(){
+
+
+
+    matchSTDIN();
+
+// JVAL is the type but you use jval when passing information!
+    while(!endOfInput()){
+
+        std::pair<JVAL,TokenType> next = jlnext();
+        handle(next.second);
+
+    }
+    printf("The linecount was %i and the wc was %i so cool!\n",lineCount,wordCount);
+
+    return 0;
+
+}
+
+Proceeding
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched an integer
+matched a newline
+matched a word
+matched a word
+matched an integer
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched an integer
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched an integer
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched an integer
+matched an integer
+matched an integer
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched an integer
+matched an integer
+matched an integer
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched an integer
+matched a newline
+matched a word
+matched an integer
+matched a newline
+matched a word
+matched an integer
+matched a newline
+matched an integer
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a minus
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a word
+matched a word
+matched a word
+matched an integer
+matched a newline
+matched a newline
+matched a simple character
+matched a minus
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a word
+matched an integer
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a minus
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a minus
+matched a word
+matched a minus
+matched a minus
+matched a word
+matched a minus
+matched a word
+matched a minus
+matched an integer
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a minus
+matched a word
+matched a word
+matched a simple character
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched an integer
+matched a minus
+matched an integer
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a word
+matched an integer
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a word
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a simple character
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a newline
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a newline
+matched a newline
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a word
+matched a simple character
+matched a newline
+matched a newline
+matched a word
+matched an integer
+matched a newline
+matched a newline
+matched a newline
+The linecount was 147 and the wc was 344 so cool!
+rm *.o LexMain

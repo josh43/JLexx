@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #makeDir=""
 currDir=${PWD}
-makeDir="/usr/share/JLexx/LexLoader/LexRunner/"
+makeDir=/usr/share/JLexx/JLexx/LexLoader/LexRunner/
 cd ${makeDir}
 
 #debugging uncomment
 #make
-make makeRun
-./LexMain < $1
-make clean
+make -f makeRun 1> /dev/null
+./LexMain < ${currDir}/$1
+make clean 1> /dev/null
 
 
 

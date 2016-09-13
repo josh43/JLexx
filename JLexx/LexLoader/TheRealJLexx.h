@@ -21,7 +21,6 @@ namespace Lexx{
         std::string myString;
         std::vector<string> funcNameList;
         unsigned int curr;
-        unsigned int tokenListLength;
         std::vector<std::pair<JVAL,TokenType > > jTokens;
         FILE * stdinFD;
         bool verbose;
@@ -52,13 +51,14 @@ namespace Lexx{
         }
 
         bool endOfInput(){
-            return  (curr >= (tokenListLength-1));
+            return  (curr >= this->jTokens.size());
         }
         virtual void handleData(Data &d) override {
+           // jmatch.text = &myString[0];
+           // jmatch.start = d.startOfMatch;
+           // jmatch.end = d.endOfMatch;
 
-            jmatch.start = d.startOfMatch;
-            jmatch.end = d.endOfMatch;
-
+            jmatch = {&myString[0],d.startOfMatch,d.endOfMatch};
             //uint temp  = reFuncList[d.regexNumber].second();
             jTokens.push_back({jval,(TokenType)reFuncList[d.regexNumber].second()});
         }
@@ -66,15 +66,17 @@ namespace Lexx{
 
 
         bool match(string s){
-            jmatch.text = &myString[0];
             this->myString = std::move(s);
-             bool res = RegexToDFABuilder::match(myString, false, false, this);
-            tokenListLength = jTokens.size();
+
+            bool res = RegexToDFABuilder::match(myString, false, false, this);
             return res;
 
         }
 
         const std::pair<JVAL,TokenType> & jlnext(){
+            if(curr >= this->jTokens.size()){
+                throw std::invalid_argument("Error triyng to get the next token when there is not one!! user endOfInpu()\n");
+            }
             return jTokens[curr++];
         }
 
@@ -91,10 +93,10 @@ namespace Lexx{
     private:
         void matchFromSTDIN(){
             jmatch.text = &myString[0];
-            printf("\nAbout to use the dfa to match against %s\n",myString.c_str());
-            printf("\nProceeding\n");
 
-            RegexToDFABuilder::match(myString, true,false, this);
+
+
+            RegexToDFABuilder::match(myString, false,false, this);
 
         }
 

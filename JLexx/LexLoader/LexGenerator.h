@@ -125,12 +125,14 @@ namespace Lexx {
             std::string bridge = debugBase + "/GenFiles/BridgeHeader.h";
             outFile = fopen(lexMain.c_str(),"w");
             if(outFile == NULL){
-                throw std::invalid_argument("Couldnt open /home/josh/ClionProjects/JLexx/JLexx/LexLoader/testLexx.h");
+                printf("Couldnt open %s\n",lexMain.c_str());
+                throw std::invalid_argument("") ;
             }
 
             bridgeFile = fopen(bridge.c_str(),"w");
             if(bridgeFile == NULL){
-                throw std::invalid_argument("Couldnt open /home/josh/ClionProjects/JLexx/JLexx/LexLoader/testLexx.h");
+                printf("Couldnt open %s\n",bridge.c_str());
+                throw std::invalid_argument("") ;
             }
             fprintf(bridgeFile,
                     "#include <iostream>\n"

@@ -31,6 +31,7 @@ int main(){
     }
     printf("The linecount was %i and the wc was %i so cool!\n",lineCount,wordCount);
 
+    return 0;
 
 }
 
