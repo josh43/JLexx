@@ -14,63 +14,200 @@
 #include "../RegularExpression/Parser/RegularParser.h"
 #include "MatchHandler.h"
 
+/* TODO make the match algorithm more efficient
+   TODO after creating DFA states allow it to be loaded  from a file
+ */
 
+/*  This class takes 1 or more regeular expressions and constructs a thompson e-nfa from all of them
+ *  and than constructs an equivalent dfa although it is not a minumum dfa
+ *  it products a vector<JRegex::State>
+ *
+ *
+ *
+ *
+ *   This class allows dfa compression
+ *   the one I use to parse this input, I had a compression ratio of 20, so I used about 5% as much mem as normal
+ *   The downfall is that when moving on states
+ *
+ *   normall its
+ *   vector<vector<uint> > jumpTable
+ *   jumpTable[currentSate][inputCharacter] == some state
+ *
+ *   but with compression its
+ *   so worse case it will take 8 searches
+ *   u_char compressedIndex = compressState.binSearch(inputCharacter);
+ *   return jumpTable[currentState][compressedIndex];
+ *
+ *   But it could still potentially be faster
+ *
+ *
+ *
+ *
+ */
 class RegexToDFABuilder{
+protected:
+    typedef std::pair<JRegex::Vertex *, JRegex::Vertex *> VPair;
+    typedef std::pair<JRegex::Vertex *, unsigned int> Priority;
+
+
+    uint                                              streamLastAccepting;
+    uint                                              streamLastState;
+    std::string                                       streamString;
+    JLexx::DataHandler *                              streamHandler;
+    bool                                              hasBeenCreated;
+    unsigned int                                      maxState;
+    std::vector<std::string>                          regexList;
+    vector<JLexx::State >                             uncompressedStateList;
+    vector<JLexx::MinimizedState >                    compressedStateList;
+
+    // This will be the head of the who entire NFA
+    VPair                                             start;
+    std::unordered_map<JRegex::Vertex *,unsigned int> acceptList;
+
 
 public:
-    typedef std::pair<JRegex::Vertex *, JRegex::Vertex *> VPair;
-    RegexToDFABuilder(){hasBeenCreated = false;}
+    RegexToDFABuilder(JLexx::DataHandler * sHandler = nullptr):streamHandler(sHandler){
+
+        hasBeenCreated = false;
+        streamLastAccepting = JLexx::STATE_SENTINEL;
+        streamLastState = 0;
+        streamString.reserve(1024);
+
+
+    }
+    RegexToDFABuilder(vector<JLexx::State> && sList,JLexx::DataHandler * streamHandler):RegexToDFABuilder(streamHandler){
+        uncompressedStateList = (std::move(sList));
+    }
+    // when adding to the regexList the first added regex will have the highest precedence
+    // and the second will have the next highest precedence
     RegexToDFABuilder & add(const std::string & str){
         regexList.push_back(str);
-        return *this;
-    }
-
-
-
-    virtual ~RegexToDFABuilder(){
-        if(start.first) {
-            start.first->removeAll();
-        }
-
-    }
-    RegexToDFABuilder & create(bool verbose = true){
-        if(hasBeenCreated){
-
-            throw std::invalid_argument("This Converter has already been created");
-        }else{
-            hasBeenCreated = true;
-            createStates(verbose);
-        }
-
         return *this;
     }
     void addToList(const std::string & str){
         regexList.push_back(str);
 
     }
-    virtual bool match(string & s,bool verbose = true,bool shortestMatch = false, Lexx::DataHandler * handler = nullptr){
+    RegexToDFABuilder & minimizeStates(bool verbose = false){
+        if(!hasBeenCreated){
+            throw std::invalid_argument("Cannot minimize states when you have not constructued them yet\n!");
+        }
+        uint totalSpaceMinimized = 0;
+        compressedStateList.reserve(uncompressedStateList.size());
+        for(auto x : this->uncompressedStateList){
+            JLexx::MinimizedState minimizedState(x);
+            if(verbose) {
+                minimizedState.printSelf();
+            }
+            totalSpaceMinimized+=minimizedState.spaceUsed;
+            //x.printStateInfoToFile(stdout);
+            for(uint i = 0; i < 256; i++) {
+                uint debug = 0;
+                if(minimizedState[i] != x.jump[i]){
+                    printf("This occured at state %d on State.jump[%u] = %u and Minimized.jump[%u] = %u\n",x.stateNumber,i,x.jump[i],minimizedState.binSearch(i,debug),minimizedState[i]);
+                    printf("This occured at state %d on State.jump[%u] = %u and Minimized.jump[%u] = %u\n",x.stateNumber,i,x.jump[i],i,minimizedState[i]);
+                    throw std::invalid_argument("Error when minimizing states, the jump results did not match");
+                    printf("THIS IS PROBABLY AN ERROR!!");
+                }else{
+                    if(verbose) {
+                        printf("It took bin search %u tries\n", debug);
+                        minimizedState.printSavingsInfo();
+                    }
+                }
+            }
+            compressedStateList.push_back(std::move(minimizedState));
+        }
+
+
+        if(verbose) {
+            ulong uncompressedSize = uncompressedStateList.size() * sizeof(JLexx::State);
+            printf("\n\n COMPRESSION RATIO -> Total space saved %f or %u/%lu \n\n",
+                   (float) totalSpaceMinimized / (float) uncompressedSize, totalSpaceMinimized, uncompressedSize);
+        }
+
+        // erase it
+        uncompressedStateList.resize(0);
+        return *this;
+    }
+    // Delete the start Vertex
+    virtual ~RegexToDFABuilder(){
+        if(start.first) {
+            start.first->removeAll();
+        }
+
+    }
+    // must be called in order to build
+    RegexToDFABuilder & create(bool verbose = true){
+        if(hasBeenCreated){
+            throw std::invalid_argument("This Converter has already been created");
+        }else{
+            hasBeenCreated = true;
+            createStates(verbose);
+        }
+        return *this;
+    }
+
+
+
+    bool readChar(u_char c){
+        if(uncompressedStateList.size()){
+            return uncompressInStream(c);
+        }
+            if((uncompressedStateList[streamLastState][c]) != JLexx::STATE_SENTINEL){
+                streamLastState = uncompressedStateList[streamLastState][c];
+                if(uncompressedStateList[streamLastState].isAccepting()){
+                    streamLastAccepting = streamLastState;
+                }
+                streamString.push_back(c);
+                return true;
+            }else if(streamLastAccepting != JLexx::STATE_SENTINEL){
+
+                if(!streamHandler){
+                    throw std::invalid_argument("When using the stream you need to pass in a stream handler!\n");
+                }
+                streamHandler->streamToken(streamString,uncompressedStateList[streamLastAccepting].acceptingState);
+                streamLastAccepting = JLexx::STATE_SENTINEL;
+                return false;
+            }else{
+                streamLastAccepting = JLexx::STATE_SENTINEL;
+                return false;
+            }
+
+    }
+    // NOTE : I am not using virtual functions because they are slow so match and matchToken are basically just duplicated
+    virtual bool match(const string & s, bool verbose = true, bool shortestMatch = false, JLexx::DataHandler * handler = nullptr){
         if(shortestMatch){throw std::invalid_argument("I need to implement that feat");}
-        unsigned int curr = 0;
-        unsigned int start = 0;
-        unsigned int lastState =0;
-        Lexx::Data data;
-        JRegex::State & last = stateList[0];
+        if(compressedStateList.size()){
+            return compressedMatch(s,verbose,shortestMatch,handler);
+        }
+        unsigned int curr =      0;
+        unsigned int start =     0;
+        unsigned int lastState = 0;
+        JLexx::Data data;
         bool toReturn = false;
-        s.insert(s.begin(),'\n');
-        s.push_back('\n');
-        unsigned int lastAcceptingState;
+
+        unsigned int lastAcceptingState= JLexx::STATE_SENTINEL;
+       //if((stateList[lastState]['\n']) != JLexx::STATE_SENTINEL){
+       //    lastState = stateList[lastState]['\n'];
+       //    if(stateList[lastState].isAccepting()){
+       //        lastAcceptingState = lastState;
+       //    }
+       //}
+        // I don't check after advancing if start < s.length but it is not neccessary
+        // because every state['\0'] == STATE_SENTINEL
+        // so it will eventually reach that :)
         while(start  < s.length()){
-            lastAcceptingState = JRegex::STATE_SENTINEL;
-            while((stateList[lastState][s[curr]]) != JRegex::STATE_SENTINEL){
-                lastState = stateList[lastState][s[curr++]];
-                if(stateList[lastState].isAccepting()){
+            while((uncompressedStateList[lastState][s[curr]]) != JLexx::STATE_SENTINEL){
+                lastState = uncompressedStateList[lastState][s[curr++]];
+                if(uncompressedStateList[lastState].isAccepting()){
                     lastAcceptingState = lastState;
                 }
             }
-            if(lastAcceptingState != JRegex::STATE_SENTINEL){
+            if(lastAcceptingState != JLexx::STATE_SENTINEL){
                 data.startOfMatch = start;
                 data.endOfMatch = curr;
-                data.regexNumber = stateList[lastState].acceptingState;
+                data.regexNumber = uncompressedStateList[lastAcceptingState].acceptingState;
+
 
                 if(verbose) {
                     printf("\n@BEGIN MATCH\n");
@@ -90,7 +227,86 @@ public:
                 start+=(curr-start) - 1;
             }
 
-            last = stateList[0];
+            lastAcceptingState = JLexx::STATE_SENTINEL;
+            lastState = 0;
+            start++;
+            curr = start;
+        }
+
+        return toReturn;
+    }
+    // Same function as match except I use the compressed Version
+private:
+    bool uncompressInStream(int c) {
+        if((compressedStateList[streamLastState][c]) != JLexx::STATE_SENTINEL){
+            streamLastState = compressedStateList[streamLastState][c];
+            if(compressedStateList[streamLastState].isAccepting()){
+                streamLastAccepting = streamLastState;
+            }
+            streamString.push_back(c);
+            return true;
+        }else if(streamLastAccepting != JLexx::STATE_SENTINEL){
+
+            if(!streamHandler){
+                throw std::invalid_argument("When using the stream you need to pass in a stream handler!\n");
+            }
+            streamHandler->streamToken(streamString,compressedStateList[streamLastAccepting].acceptingState);
+            streamLastAccepting = JLexx::STATE_SENTINEL;
+            return false;
+        }else{
+            streamLastAccepting = JLexx::STATE_SENTINEL;
+            return false;
+        }
+    }
+    bool compressedMatch(const string &s, bool verbose, bool match, JLexx::DataHandler *handler) {
+        unsigned int curr =      0;
+        unsigned int start =     0;
+        unsigned int lastState = 0;
+        JLexx::Data data;
+        bool toReturn = false;
+
+        unsigned int lastAcceptingState= JLexx::STATE_SENTINEL;
+        //if((stateList[lastState]['\n']) != JLexx::STATE_SENTINEL){
+        //    lastState = stateList[lastState]['\n'];
+        //    if(stateList[lastState].isAccepting()){
+        //        lastAcceptingState = lastState;
+        //    }
+        //}
+        // I don't check after advancing if start < s.length but it is not neccessary
+        // because every state['\0'] == STATE_SENTINEL
+        // so it will eventually reach that :)
+        while(start  < s.length()){
+            while((compressedStateList[lastState][s[curr]]) != JLexx::STATE_SENTINEL){
+                lastState = compressedStateList[lastState][s[curr++]];
+                if(compressedStateList[lastState].isAccepting()){
+                    lastAcceptingState = lastState;
+                }
+            }
+            if(lastAcceptingState != JLexx::STATE_SENTINEL){
+                data.startOfMatch = start;
+                data.endOfMatch = curr;
+                data.regexNumber = compressedStateList[lastAcceptingState].acceptingState;
+
+
+                if(verbose) {
+                    printf("\n@BEGIN MATCH\n");
+                    printf("\tMatched     : %s \n", s.substr(start, curr - start).c_str());
+                    printf("\tWith Regex  : %u \n", data.regexNumber);
+                    printf("@END   MATCH\n");
+                }
+
+
+                if(handler){
+                    handler->handleData(data);
+                    if(handler->shouldStop()){
+                        return true;
+                    }
+                }
+
+                start+=(curr-start) - 1;
+            }
+
+            lastAcceptingState = JLexx::STATE_SENTINEL;
             lastState = 0;
             start++;
             curr = start;
@@ -99,25 +315,28 @@ public:
         return toReturn;
     }
 
-private:
+    // creates the entire thompson e-nfa
     void createStates(bool verbose){
         using namespace JRegex;
+        using namespace JLexx;
         maxState = 0;
         if(!regexList.size()){throw std::invalid_argument("When creating states you need at least one regex");}
          start = {nullptr,nullptr};
         for( int i = regexList.size()-1; i >=0; i--) {
-
+            // create and parse the regular expression
             RegularParser p(new RegularLexer(regexList[i]));
             p.parse();
+            // create the e-nfa graph from it
             RegularGraph graph(p.deque.regularDeque.front(),p.deque.lAnchor,p.deque.rAnchor);
             graph.dontDeallocate();
             VPair curr;
+
             if(start.first == nullptr) {
                 start = graph.getGraph();
                 start.second->isAccepting = true;
                 acceptList.emplace(Priority(start.second,i));
             }else{
-                // or them together
+                // or the e-nfa's together
                 curr = graph.getGraph();
                 curr.second->isAccepting = true;
                 acceptList.insert(Priority(curr.second,i));
@@ -126,28 +345,38 @@ private:
 
         }
 
+        // Create the DFA Helper which will construct the neccessary states
         DFAHelper h(start, acceptList);
-        stateList.reserve(1024);// roughly 1 mb
+        uncompressedStateList.reserve(1024);// roughly 1 mb
+
 
         const vector<DFAStateHelper*> & list =h.list;
 
         if(verbose){
             printf("Printing %lu states \n",list.size());
         }
-        for(const DFAStateHelper * h : list){
-            State state(h,maxState++);
+        for(const DFAStateHelper * helperState : list){
+            State state(helperState,maxState++);
 
+            // this is very important vvvv
             state.set('\0',STATE_SENTINEL);
-            unsigned int acceptingState = getMaxPriorityState(h->fromState);
+            unsigned int acceptingState = getMaxPriorityState(helperState->fromState);
             state.acceptingState = acceptingState;
-            stateList.push_back(state);
+            uncompressedStateList.push_back(state);
             if(verbose) {
                // h->printSelf();
                 state.printState();
             }
-            delete h;
+            delete helperState;
         }
         if(verbose) {
+            uint byteSize = uncompressedStateList.size() * sizeof(State);
+            uint kbSize = byteSize/=1024;
+            uint mbSize = kbSize/=1024;
+            printf("The number of states created was %lu\n "
+                           "Estimated Size : %-20u bytes\n"
+                           "Estimated Size : %-20u kb's\n"
+                           "Estimated Size : %-20u mb's\n",uncompressedStateList.size(),byteSize,kbSize,mbSize);
             printf("Done creating states\n");
 
         }
@@ -167,8 +396,9 @@ private:
 
     }
 
+
     unsigned int getMaxPriorityState(const std::set<JRegex::Vertex *> & s){
-        unsigned int toReturn = JRegex::STATE_SENTINEL;
+        unsigned int toReturn = JLexx::STATE_SENTINEL;
         for(JRegex::Vertex * v : s){
             if(acceptList.find(v) != acceptList.end()) {
                 if (acceptList[v] < toReturn) {
@@ -184,15 +414,7 @@ private:
     // the way you add to this list will determine
     // the precedence of the regex
     // index 0 == highest precedence
-protected:
 
-    bool hasBeenCreated;
-    unsigned int maxState;
-    std::vector<std::string> regexList;
-    vector<JRegex::State >  stateList;
-    VPair start;
-    std::unordered_map<JRegex::Vertex *,unsigned int> acceptList;
-    typedef std::pair<JRegex::Vertex *, unsigned int> Priority;
 
 
 };

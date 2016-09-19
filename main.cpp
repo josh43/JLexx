@@ -14,7 +14,7 @@ int main() {
 
 
      Lexx::LexGenerator sL;
-     sL.match(FileLoader::fileToString("/home/josh/ClionProjects/JLexx/JLexx/a.txt",true));
+     sL.match(FileLoader::fileToString("/home/josh/ClionProjects/JLexx/JLexx/JLexxExample.txt",true));
      jmain();
     return 0;
 }

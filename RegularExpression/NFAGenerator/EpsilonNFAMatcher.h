@@ -40,7 +40,7 @@ class EpsilonNFAMatcher {
             int startIndex = 0;
             str.insert(str.begin(),'\n');
             str.push_back('\n');
-            while (currentIndex < str.length()) {
+            while ((uint)currentIndex < str.length()) {
                 set<Vertex *> closure;
                 if (str[currentIndex] < 0) {
                     str[currentIndex] = std::numeric_limits<unsigned char>::min() + (-str[currentIndex]);

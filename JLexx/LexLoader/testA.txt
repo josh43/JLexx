@@ -1,4 +1,0 @@
-"\n"
-"hello\n\n\n"
-o ok how are we today
-"o ok how are we today"

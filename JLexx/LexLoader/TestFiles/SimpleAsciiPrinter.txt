@@ -1,0 +1,55 @@
+#include <stdlib.h>
+#include <string.h>
+#define currStart jmatch.start
+#define currEnd jmatch.end
+
+
+/*
+        Special characters
+        case '\0': return RegularToken(EOF_TOKEN,"<EOF>");
+        case '\\': return escapeToken();
+        case '[' :consume(); return RegularToken(L_BRACKET,"[")
+        case ']' :consume(); return RegularToken(R_BRACKET,"]")
+        case '*' :consume(); return RegularToken(STAR,"*");
+        case '+' :consume(); return RegularToken(PLUS,"+");
+        case '?' :consume(); return RegularToken(QUESTION,"?");
+        case '^' :consume(); return RegularToken(L_ANCHOR,"^");
+        case '$' :consume(); return RegularToken(R_ANCHOR,"$");
+        case '|' :consume(); return RegularToken(OR,"|");
+        case '(' :consume(); return RegularToken(L_PAREN,"(");
+        case ')' :consume(); return RegularToken(R_PAREN,")");
+        case '-' :consume(); return RegularToken(DASH,"-");
+        case '.' :consume(); return RegularToken(DOT,".");
+*/
+union JVAL {
+    int unused;
+}jval;
+BEGIN TOKENS
+ UNUSED
+BEGIN DEFINITIONS
+    [\n]              { printf("newline == %-3d\n",'\n'); return 0; }
+    [0-9][0-9][0-9]   {
+
+                        char buff[5];
+                        memset(buff,0,sizeof(buff));
+                        strncpy(buff,jmatch.text + currStart,currEnd-currStart);
+                        int val = atoi(buff);
+                        if(val <= 0 || val >= 256){
+                            printf("'%s' is an invalid ascii character\n",buff);
+                        }else{
+                            printf("%-3d == '%c'\n",val,val);
+                        }
+                         return 0;
+                       }
+    \\-[0-9]+           {return 0;}
+    [0-9]+            {return 0;}
+    [^\n]             { printf("'%c'  == %-3d\n",jmatch.text[currStart],jmatch.text[currStart]);return 0; }
+
+
+
+BEGIN MAIN
+
+int main(int argc, char * argv[]){
+    matchSTDIN(true);
+    return 0;
+}

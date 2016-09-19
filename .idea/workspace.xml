@@ -12,18 +12,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e396bd4-3741-4a08-aefd-10b20adccc38" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/out.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/JLexx.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/BridgeHeader.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.h.gch" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexGenMain" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/LexMain" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/LexMain.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/Utility.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/a.out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/testA.txt" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/JLexx/LexLoader/a.txt" afterPath="$PROJECT_DIR$/JLexx/LexLoader/TestFiles/JLexxExample.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/JLexx.iml" afterPath="$PROJECT_DIR$/.idea/JLexx.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InstallDir/install.sh" afterPath="$PROJECT_DIR$/InstallDir/install.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp" afterPath="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/DFABuilderHelper.h" afterPath="$PROJECT_DIR$/JLexx/DFABuilderHelper.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexGenMain.cpp" afterPath="$PROJECT_DIR$/JLexx/LexLoader/LexGenMain.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h" afterPath="$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun" afterPath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makeRun" afterPath="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makeRun" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/TheRealJLexx.h" afterPath="$PROJECT_DIR$/JLexx/LexLoader/TheRealJLexx.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/a.txt" afterPath="$PROJECT_DIR$/JLexx/LexLoader/a.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/jlgen" afterPath="$PROJECT_DIR$/JLexx/LexLoader/jlgen" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/LexLoader/makeGen" afterPath="$PROJECT_DIR$/JLexx/LexLoader/makeGen" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/MatchHandler.h" afterPath="$PROJECT_DIR$/JLexx/MatchHandler.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLexx/RegexToDFABuilder.h" afterPath="$PROJECT_DIR$/JLexx/RegexToDFABuilder.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h" afterPath="$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h" afterPath="$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h" afterPath="$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/Parser/Parser.h" afterPath="$PROJECT_DIR$/RegularExpression/Parser/Parser.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/Parser/RegularParser.h" afterPath="$PROJECT_DIR$/RegularExpression/Parser/RegularParser.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/Regex/Regex.cpp" afterPath="$PROJECT_DIR$/RegularExpression/Regex/Regex.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RegularExpression/Utility.h" afterPath="$PROJECT_DIR$/RegularExpression/Utility.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="JLexx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,215 +59,32 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <splitter split-orientation="horizontal" split-proportion="0.50781673">
-            <split-first>
-              <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-                <file leaf-file-name="restEx.rest" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/restEx.rest">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="255">
-                        <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="post.js" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/JS/post.js">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="0">
-                        <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="get.js" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/JS/get.js">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="0">
-                        <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="RestToken.h" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/RestToken.h">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="360">
-                        <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="post.m" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/OBJC/post.m">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="0">
-                        <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="post.h" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/OBJC/post.h">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="0">
-                        <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="a.txt" pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/a.txt">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="272">
-                        <caret line="84" column="31" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="BridgeHeader.h" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/GenFiles/BridgeHeader.h">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1245">
-                        <caret line="83" column="1" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="1" />
-                        <folding>
-                          <element signature="e#0#19#0" expanded="true" />
-                          <element signature="e#176#195#0" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="RegularTreeNodes.h" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularTreeNodes.h">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="435">
-                        <caret line="29" column="50" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="50" />
-                        <folding>
-                          <element signature="e#158#175#0" expanded="false" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-first>
-            <split-second>
-              <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-                <file leaf-file-name="TheRealJLexx.h" pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TheRealJLexx.h">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="557">
-                        <caret line="57" column="43" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
-                        <folding>
-                          <element signature="e#97#130#0" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="a.txt" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/a.txt">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1425">
-                        <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-second>
-          </splitter>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="JLexx" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6309992">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="TheRealJLexx.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TheRealJLexx.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+                <state relative-caret-position="2985">
+                  <caret line="199" column="29" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
                   <folding>
-                    <element signature="e#97#130#0" expanded="true" />
+                    <marker date="1473909494413" expanded="true" signature="4824:4965" ph="{...}" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="makeGen" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/makeGen">
+          <file leaf-file-name="libio.h" pinned="false" current-in-tab="false">
+            <entry file="file:///usr/include/libio.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+                <state relative-caret-position="915">
+                  <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="jlgen" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/jlgen">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="makefile" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/makefile">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="LexGenerator.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="148" column="23" selection-start-line="148" selection-start-column="21" selection-end-line="148" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#92#109#0" expanded="true" />
-                    <element signature="e#3072#3157#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DFABuilderHelper.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/DFABuilderHelper.h">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="435">
-                  <caret line="316" column="19" selection-start-line="316" selection-start-column="17" selection-end-line="316" selection-end-column="19" />
-                  <folding>
-                    <element signature="e#0#2#0" expanded="false" />
-                    <element signature="e#106#108#0" expanded="false" />
-                    <element signature="e#148#162#0" expanded="true" />
-                    <element signature="e#8371#8598#0" expanded="false" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -253,38 +92,89 @@
           <file leaf-file-name="RegexToDFABuilder.h" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/JLexx/RegexToDFABuilder.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="198" column="26" selection-start-line="198" selection-start-column="24" selection-end-line="198" selection-end-column="26" />
+                <state relative-caret-position="2265">
+                  <caret line="151" column="28" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
+                  <folding>
+                    <marker date="1473899721261" expanded="true" signature="1380:15792" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="2433:2593" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="2714:2773" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="2977:3040" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="3084:3126" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="3187:5112" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="5176:5258" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="5350:5586" ph="{...}" />
+                    <marker date="1473899721261" expanded="false" signature="6926:9127" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="9238:10119" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="10217:12208" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="12286:14790" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="14927:15267" ph="{...}" />
+                    <marker date="1473899721261" expanded="true" signature="15344:15663" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SimpleAsciiPrinter.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/SimpleAsciiPrinter.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="765">
+                  <caret line="51" column="29" selection-start-line="51" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="JLexx.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/JLexx.h">
+          <file leaf-file-name="DFABuilderHelper.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/JLexx/DFABuilderHelper.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1110">
-                  <caret line="74" column="12" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="12" />
+                <state relative-caret-position="4350">
+                  <caret line="290" column="21" selection-start-line="290" selection-start-column="13" selection-end-line="290" selection-end-column="21" />
+                  <folding>
+                    <element signature="e#0#2#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RegularParser.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularParser.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="4335">
+                  <caret line="287" column="16" selection-start-line="287" selection-start-column="16" selection-end-line="287" selection-end-column="16" />
+                  <caret line="288" column="16" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+                  <caret line="289" column="16" selection-start-line="289" selection-start-column="16" selection-end-line="289" selection-end-column="16" />
+                  <folding>
+                    <marker date="1473899399725" expanded="true" signature="3754:5455" ph="{...}" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="LexGenMain.cpp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexGenMain.cpp">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="195">
+                  <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="jlrun" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun">
+          <file leaf-file-name="RegularErrorMessage.h" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularErrorMessage.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+                <state relative-caret-position="405">
+                  <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="testA.txt" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/testA.txt">
+          <file leaf-file-name="Lexer.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/Lexer.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="105">
+                  <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -294,43 +184,101 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="RestGenHelper.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/RestGenHelper.h">
+          <file leaf-file-name="RegularLexer.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegularLexer.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="630">
-                  <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+                <state relative-caret-position="870">
+                  <caret line="58" column="33" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="makefile" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makefile">
+          <file leaf-file-name="EZGraph.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/EZGraph.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="18" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="18" />
+                <state relative-caret-position="195">
+                  <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="RestGenerator.h" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/RestGenerator.h">
+          <file leaf-file-name="RegularToken.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegularToken.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="690">
+                  <caret line="46" column="25" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RegLexerTester.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegLexerTester.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RegularTreeNodes.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularTreeNodes.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1275">
+                  <caret line="85" column="59" selection-start-line="85" selection-start-column="59" selection-end-line="85" selection-end-column="59" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="NFAGenerator.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="4965">
-                  <caret line="331" column="75" selection-start-line="331" selection-start-column="75" selection-end-line="331" selection-end-column="75" />
-                  <folding>
-                    <element signature="e#0#2#0" expanded="false" />
-                  </folding>
+                  <caret line="331" column="16" selection-start-line="331" selection-start-column="12" selection-end-line="331" selection-end-column="16" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="HTTPHelper.m" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/OBJC/HTTPHelper.m">
+          <file leaf-file-name="EpsilonNFAMatcher.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+                <state relative-caret-position="180">
+                  <caret line="12" column="6" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="6" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DFAGenerator.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="15" column="6" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="6" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DFAGenTester.h" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenTester.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BridgeHeader.h" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/GenFiles/BridgeHeader.h">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="607">
+                  <caret line="56" column="6" selection-start-line="56" selection-start-column="0" selection-end-line="63" selection-end-column="3" />
                   <folding />
                 </state>
               </provider>
@@ -346,37 +294,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/JLexx/RestBuilder/RunAndUpdateScript.sh" />
-        <option value="$PROJECT_DIR$/JLexx/RestBuilder/RestGenerator.h" />
-        <option value="$PROJECT_DIR$/JLexx/RestBuilder/Rest/OBJC/Get.m" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/Parser.h" />
-        <option value="$PROJECT_DIR$/JLexx/RestBuilder/RestBuilder.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/Regex/Regex.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/Regex/Regex.cpp" />
-        <option value="$PROJECT_DIR$/RegularExpression/NFAGenerator/EZGraph.h" />
-        <option value="$PROJECT_DIR$/JLexx/DFABuilderHelper.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/Generator.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/Generator.cpp" />
-        <option value="$PROJECT_DIR$/JLexx/MatchHandler.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/Lexer/Lexer.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/Parser/RegularTreeNodes.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/Parser/Parser.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/StateLexer.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/BasicHeader.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/testLexx.h" />
-        <option value="$PROJECT_DIR$/RegularExpression/Lexer/RegularLexer.h" />
-        <option value="$PROJECT_DIR$/JLexx/a.txt" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/TheRealJLexx.h" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/testLexx.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/LexGenMain.cpp" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/jj.sh" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/makefile" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makefile.sh" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.h" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makefile" />
         <option value="$PROJECT_DIR$/JLexx/FileLoader.h" />
@@ -386,17 +308,43 @@
         <option value="$PROJECT_DIR$/JLexx/LexLoader/InstallDir/makeGen" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/InstallDir/install.sh" />
         <option value="$PROJECT_DIR$/InstallDir/makeGen" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/makeGen" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makeRun" />
-        <option value="$PROJECT_DIR$/InstallDir/install.sh" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/BridgeHeader.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/a.txt" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/ExampleInput.txt" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/JLexxExample.txt" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/generatedBuild.log" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/jlexxBuild.log" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/makeGen" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/makefile" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/SimpleAsciiPrinter.txt" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/TestFiles/SimpleAsciiPrinter.txt" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/TestFiles/JLDebug/BridgeHeader.h" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/TestFiles/JLDebug/LexMain.cpp" />
+        <option value="$PROJECT_DIR$/InstallDir/install.sh" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/jlgen" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/TestFiles/AsciiHTML" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/TestFiles/AsciiHTMLParser.jlx" />
+        <option value="$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h" />
+        <option value="$PROJECT_DIR$/JLexx/BetterDFABuilderHelper.h" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/LexGenMain.cpp" />
+        <option value="$PROJECT_DIR$/JLexx/MatchHandler.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/RegularExpression/Regex/Regex.cpp" />
+        <option value="$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h" />
+        <option value="$PROJECT_DIR$/RegularExpression/Parser/Parser.h" />
+        <option value="$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h" />
+        <option value="$PROJECT_DIR$/JLexx/DFABuilderHelper.h" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h" />
+        <option value="$PROJECT_DIR$/RegularExpression/Parser/RegularErrorMessage.h" />
+        <option value="$PROJECT_DIR$/RegularExpression/Utility.h" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/GenFiles/BridgeHeader.h" />
+        <option value="$PROJECT_DIR$/RegularExpression/Parser/RegularParser.h" />
+        <option value="$PROJECT_DIR$/JLexx/LexLoader/TestFiles/JLexxExample.txt" />
         <option value="$PROJECT_DIR$/JLexx/RegexToDFABuilder.h" />
         <option value="$PROJECT_DIR$/JLexx/LexLoader/TheRealJLexx.h" />
-        <option value="$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun" />
+        <option value="$PROJECT_DIR$/RegularExpression/Parser/ExperimentalParser.h" />
       </list>
     </option>
   </component>
@@ -410,8 +358,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="1985" />
     <option name="y" value="52" />
-    <option name="width" value="1845" />
-    <option name="height" value="998" />
+    <option name="width" value="1855" />
+    <option name="height" value="1028" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -509,115 +457,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TestVSGrep" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RegularExpression" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NFAGenerator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LexLoader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LexLoader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LexRunner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LexLoader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GenFiles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JLexx" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InstallDir" />
+              <option name="myItemId" value="DFAGenerator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -634,16 +474,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/JLexx/LexLoader/GenFiles" />
+      <recent name="$PROJECT_DIR$/JLexx/LexLoader" />
+      <recent name="$PROJECT_DIR$/JLexx/LexLoader/TestFiles" />
       <recent name="$PROJECT_DIR$/JLexx" />
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/JLexx/LexLoader" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/JLexx" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/JLexx/LexLoader/InstallDir" />
-      <recent name="$PROJECT_DIR$/JLexx/LexLoader/GenFiles" />
     </key>
   </component>
   <component name="RunManager" selected="Application.LexGenMain">
@@ -819,7 +659,7 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="LexGenMain" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="JLexx" RUN_TARGET_NAME="JLexx" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration default="false" name="LexGenMain" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--debug=true  --stdin=false --ideInput=true" WORKING_DIR="" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="JLexx" RUN_TARGET_NAME="JLexx" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
       <method />
     </configuration>
@@ -860,35 +700,43 @@
       <workItem from="1473641741914" duration="3554000" />
       <workItem from="1473645302739" duration="8221000" />
       <workItem from="1473708240672" duration="9592000" />
-      <workItem from="1473738130457" duration="7012000" />
+      <workItem from="1473738130457" duration="11630000" />
+      <workItem from="1473793855600" duration="38368000" />
+      <workItem from="1473881599457" duration="20403000" />
+      <workItem from="1473969993165" duration="871000" />
+      <workItem from="1474017889165" duration="362000" />
+      <workItem from="1474058466522" duration="1229000" />
+      <workItem from="1474065983905" duration="902000" />
+      <workItem from="1474236827017" duration="18000" />
+      <workItem from="1474310262157" duration="29000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120974000" />
+    <option name="totallyTimeSpent" value="187774000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1985" y="52" width="1845" height="998" extended-state="0" />
+    <frame x="1985" y="52" width="1855" height="1028" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1609756" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18544474" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3575419" sideWeight="0.48509052" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291262" sideWeight="0.6565495" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24763903" sideWeight="0.6565495" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32435232" sideWeight="0.5149095" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32513967" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2301676" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1501355" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10242587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20207255" sideWeight="0.49574015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32849163" sideWeight="0.48509052" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29153925" sideWeight="0.48509052" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44036698" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28440368" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3374108" sideWeight="0.48509052" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -937,7 +785,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h</url>
-          <line>242</line>
+          <line>256</line>
           <option name="timeStamp" value="217" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -947,24 +795,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h</url>
-          <line>321</line>
-          <option name="timeStamp" value="230" />
+          <line>131</line>
+          <option name="timeStamp" value="275" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <condition expression="d.startOfMatch &gt; 90" language="ObjectiveC" />
-          <url>file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h</url>
-          <line>315</line>
-          <option name="timeStamp" value="231" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h</url>
-          <line>316</line>
-          <option name="timeStamp" value="232" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h</url>
-          <line>329</line>
-          <option name="timeStamp" value="233" />
+          <url>file://$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp</url>
+          <line>42</line>
+          <option name="timeStamp" value="310" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -975,111 +812,200 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="263" />
+      <option name="time" value="318" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="stateList[0]" language="ObjectiveC" />
         <watch expression="this" language="ObjectiveC" />
-        <watch expression="s[curr]" language="ObjectiveC" />
-        <watch expression="this-&gt;myString[d.startOfMatch]" language="ObjectiveC" />
-        <watch expression="currentRegex" language="ObjectiveC" />
-        <watch expression="reFuncList" />
-        <watch expression="reFuncList" language="ObjectiveC" />
         <watch expression="jl" language="ObjectiveC" />
-        <watch expression="jmatch" language="ObjectiveC" />
-        <watch expression="jmatch.text[0]" language="ObjectiveC" />
+        <watch expression="currentRegex" language="ObjectiveC" />
+        <watch expression="reNameList.size()" language="ObjectiveC" />
+        <watch expression="lastState" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegularToken.h">
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/AsciiTest.in">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/4.8/bits/move.h">
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/html.out">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/jlexxBuild.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="415" column="0" selection-start-line="415" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/AsciiHTML">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="126" selection-start-line="13" selection-start-column="117" selection-end-line="13" selection-end-column="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/JLDebug/BridgeHeader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/JLexx.h" />
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makeRun">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/AsciiHTMLParser.jlx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/jlgen">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/ParserTester.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1080">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Regex/Regex.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-87">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/RegexIncludeAll.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Utility.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/x86_64-linux-gnu/sys/types.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="151" column="21" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/BetterDFABuilderHelper.h" />
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/JLDebug/LexMain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/4.8/bits/stl_vector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11550">
+          <caret line="770" column="0" selection-start-line="770" selection-start-column="0" selection-end-line="770" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/FileLoader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/MatchHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Regex/Regex.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/makeGen">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/RestGenHelper.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="334" column="56" selection-start-line="334" selection-start-column="56" selection-end-line="334" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/Parser.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="326">
+          <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Utility.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="390">
+          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenTester.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2807">
-          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/4.8/bits/stl_pair.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/libio.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/Lexer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-288">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegLexerTester.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularParser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="159" column="36" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/GenFiles/testLexx.h" />
     <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/RestGenerator.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4965">
@@ -1094,110 +1020,130 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4335">
+          <caret line="287" column="16" selection-start-line="287" selection-start-column="16" selection-end-line="287" selection-end-column="16" />
+          <caret line="288" column="16" selection-start-line="288" selection-start-column="16" selection-end-line="288" selection-end-column="16" />
+          <caret line="289" column="16" selection-start-line="289" selection-start-column="16" selection-end-line="289" selection-end-column="16" />
+          <folding>
+            <marker date="1473899399725" expanded="true" signature="3754:5455" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/DFABuilderHelper.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4350">
+          <caret line="290" column="21" selection-start-line="290" selection-start-column="13" selection-end-line="290" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/libio.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="9" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makefile.sh" />
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/SimpleAsciiPrinter.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="82" />
+        <state relative-caret-position="765">
+          <caret line="51" column="29" selection-start-line="51" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/JLexx/RegexToDFABuilder.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        <state relative-caret-position="2265">
+          <caret line="151" column="28" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
+          <folding>
+            <marker date="1473899721261" expanded="true" signature="1380:15792" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="2433:2593" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="2714:2773" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="2977:3040" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="3084:3126" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="3187:5112" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="5176:5258" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="5350:5586" ph="{...}" />
+            <marker date="1473899721261" expanded="false" signature="6926:9127" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="9238:10119" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="10217:12208" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="12286:14790" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="14927:15267" ph="{...}" />
+            <marker date="1473899721261" expanded="true" signature="15344:15663" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TheRealJLexx.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2985">
+          <caret line="199" column="29" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
+          <folding>
+            <marker date="1473909494413" expanded="true" signature="4824:4965" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/ExperimentalParser.h" />
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexGenMain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/Lexer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegularLexer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/4.8/bits/stl_vector.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="770" column="0" selection-start-line="770" selection-start-column="0" selection-end-line="770" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/RestGenHelper.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+        <state relative-caret-position="870">
+          <caret line="58" column="33" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/InstallDir/makeGen" />
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/InstallDir/install.sh" />
-    <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/EZGraph.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding>
-            <element signature="e#149#188#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="18" />
+        <state relative-caret-position="195">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/restEx.rest">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegularToken.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="690">
+          <caret line="46" column="25" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/JS/post.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/JS/get.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/RestToken.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/OBJC/post.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RestBuilder/Rest/OBJC/post.h">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Lexer/RegLexerTester.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1207,176 +1153,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularTreeNodes.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="50" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="50" />
-          <folding>
-            <element signature="e#158#175#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/makeRun">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="1275">
+          <caret line="85" column="59" selection-start-line="85" selection-start-column="59" selection-end-line="85" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/MatchHandler.h">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/NFAGenerator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="14" />
+        <state relative-caret-position="4965">
+          <caret line="331" column="16" selection-start-line="331" selection-start-column="12" selection-end-line="331" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/InstallDir/install.sh">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/NFAGenerator/EpsilonNFAMatcher.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="180">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TestFiles/JLexxExample.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegularExpression/Parser/RegularErrorMessage.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/GenFiles/BridgeHeader.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="83" column="1" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#176#195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/FileLoader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#94#111#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        <state relative-caret-position="607">
+          <caret line="56" column="6" selection-start-line="56" selection-start-column="0" selection-end-line="63" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexGenMain.cpp">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenerator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding>
-            <element signature="e#38#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        <state relative-caret-position="135">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/makeGen">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/JLexx.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="74" column="12" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/RegexToDFABuilder.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="198" column="26" selection-start-line="198" selection-start-column="24" selection-end-line="198" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/DFABuilderHelper.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="316" column="19" selection-start-line="316" selection-start-column="17" selection-end-line="316" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#106#108#0" expanded="false" />
-            <element signature="e#148#162#0" expanded="true" />
-            <element signature="e#8371#8598#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexGenerator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="148" column="23" selection-start-line="148" selection-start-column="21" selection-end-line="148" selection-end-column="23" />
-          <folding>
-            <element signature="e#92#109#0" expanded="true" />
-            <element signature="e#3072#3157#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/TheRealJLexx.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding>
-            <element signature="e#97#130#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/jlgen">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/a.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="84" column="31" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/out.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/LexRunner/jlrun">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JLexx/LexLoader/testA.txt">
+    <entry file="file://$PROJECT_DIR$/RegularExpression/DFAGenerator/DFAGenTester.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />

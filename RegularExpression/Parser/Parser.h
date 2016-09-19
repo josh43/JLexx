@@ -50,7 +50,7 @@ public:
             return false;
         }
     }
-    void match(const int val) {
+    void match(const uint val) {
         if(getLookaheadTypeAt(1) == val){
             this->consume();
         }else{
@@ -81,7 +81,7 @@ public:
     void syncLookahead(unsigned int i){
         unsigned size= 0;
         if((size = curr + i - lookAhead.size()) > 0){
-            for(int i = 0; i < size; i ++){
+            for(uint i = 0; i < size; i ++){
                 lookAhead.push_back(lexer->nextToken());
             }
         }

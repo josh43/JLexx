@@ -1,0 +1,110 @@
+#include <stdlib.h>
+#include <string.h>
+#define currStart jmatch.start
+#define currEnd jmatch.end
+
+
+/*
+        Special characters
+        case '\0': return RegularToken(EOF_TOKEN,"<EOF>");
+        case '\\': return escapeToken();
+        case '[' :consume(); return RegularToken(L_BRACKET,"[")
+        case ']' :consume(); return RegularToken(R_BRACKET,"]")
+        case '*' :consume(); return RegularToken(STAR,"*");
+        case '+' :consume(); return RegularToken(PLUS,"+");
+        case '?' :consume(); return RegularToken(QUESTION,"?");
+        case '^' :consume(); return RegularToken(L_ANCHOR,"^");
+        case '$' :consume(); return RegularToken(R_ANCHOR,"$");
+        case '|' :consume(); return RegularToken(OR,"|");
+        case '(' :consume(); return RegularToken(L_PAREN,"(");
+        case ')' :consume(); return RegularToken(R_PAREN,")");
+        case '-' :consume(); return RegularToken(DASH,"-");
+        case '.' :consume(); return RegularToken(DOT,".");
+*/
+union JVAL {
+    int unused;
+}jval;
+BEGIN TOKENS
+
+    STRING
+BEGIN DEFINITIONS
+    [\n\t ]                 { printf("%c",jmatch.text[currStart]); return 0; }
+    <tr[^>]*>
+    |   </tr[^>]*>
+    |   <td[^>]*>
+    |   </td[^>]*>
+                            {printf(" ");return 0;}
+    [a-zA-Z0-9]+            {
+
+                                uint size = currEnd - currStart;
+                                char buff[size +1];
+                                memset(buff,'\0',(size+1) * sizeof(char));
+                                memcpy(buff,jmatch.text + currStart,size);
+                                //buff[size] = '\0';
+
+                                printf("%s",buff);
+                                return 0;
+                             }
+
+    [^\n]                   {return 0; }
+
+
+
+BEGIN MAIN
+
+/*
+
+struct InsertInterface{
+    virtual void addData(uint type, uint val, char * str, uint size) =0;
+};
+
+struct AsciiTable{
+    std::vector<char *> decimal;
+    std::vector<char *> octal;
+    std::vector<char *> hex;
+    std::vector<char *> bin;
+    std::vector<char *> symbol;
+    std::vector<char *> description;
+
+    std::vector<std::vector<std::string> & > vecList;
+
+    AsciiTable(){
+        vecList.push_back(decimal);vecList.push_back(octal);vecList.push_back(hex);
+        vecList.push_back(bin);vecList.push_back(symbol);vecList.push_back(description);
+        vecList.resize(256);
+
+    }
+    void addData(uint curr, char * str, uint size){
+
+        vecList[curr].push_back(str);
+
+    }
+    void printTable(){
+        printf("printing the ascii table \n");
+            for(auto x : vecList){
+                for(auto y  : x){
+                    printf("%s\t",y);
+                }
+                printf("\n");
+            }
+
+    }
+
+    ~AsciiTable(){
+        for(auto x : vecList){
+            for(uint i = 0; i < x.size(); i++){
+                delete x[i];
+                x[i] = nullptr;
+            }
+        }
+    }
+};
+*/
+
+int main(int argc, char * argv[]){
+
+    matchSTDIN();
+
+
+    return 0;
+}

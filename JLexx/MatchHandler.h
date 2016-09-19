@@ -5,7 +5,7 @@
 #ifndef JLEXX_MATCHHANDLER_H
 #define JLEXX_MATCHHANDLER_H
 #include <string>
-namespace Lexx {
+namespace JLexx {
     struct Data {
         unsigned int startOfMatch;
         unsigned int endOfMatch;
@@ -20,6 +20,7 @@ namespace Lexx {
     class DataHandler{
     public:
         virtual void handleData(Data & d) = 0;
+        virtual void streamToken(const std::string & s,uint regexMatch) = 0;
         virtual bool shouldStop() = 0;
     };
 

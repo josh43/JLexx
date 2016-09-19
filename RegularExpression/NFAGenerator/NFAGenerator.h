@@ -10,6 +10,11 @@
 #include <stack>
 #include <sys/time.h>
 
+
+/*
+ * This will take a Regular Expression generated parse tree and
+ * construct a thompson e-NFA regexp note that it is not the most efficient thompson enfa
+ */
 namespace JRegex {
     using namespace std;
 
@@ -28,16 +33,7 @@ namespace JRegex {
         bool dontDeallo;
     public:
 
-        /* should be broken up like
-         *  struct expr{
-         *      expr * left, expr * right;
-         *      string bracketString;
-         *      char data;
-         *      unsigned int type; // either bracket or data AND either OR_NODE or AND_NODE and optionally star,plus,question
-         *  }
-         *
-         *
-         */
+
 
         RegularGraph() = delete;
         RegularGraph(RegularNode *start,bool lAnchor,bool rAnchor) {

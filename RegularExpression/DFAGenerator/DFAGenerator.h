@@ -88,7 +88,7 @@ namespace JRegex {
                 }
                 if(stateTransitions.size()){
                     printf("@START StateTransitions\n\n");
-                    for(int i = 0; i < stateTransitions.size(); i ++){
+                    for(uint i = 0; i < stateTransitions.size(); i ++){
                         if(i +10 % 10 == 0){
                             printf("\n");
                         }

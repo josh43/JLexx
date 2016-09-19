@@ -15,4 +15,4 @@ LexGenMain.o:  ${JLexx}/JLexx/RegexToDFABuilder.h ${JLexx}/JLexx/LexLoader/LexGe
 Utility.o: ${JLexx}/RegularExpression/Utility.h
 	$(CC) $(FLAGS) -c ${JLexx}/RegularExpression/Utility.cpp
 clean:
-	rm *.o LexGenMain
+	rm *.o

@@ -8,7 +8,7 @@
 #include <string>
 #include "../RegexToDFABuilder.h"
 
-namespace Lexx {
+namespace JLexx {
     class LexGenerator :  public DataHandler{
 
     private:
@@ -28,6 +28,7 @@ namespace Lexx {
         bool hasPrintedEnumStart;
         bool hasPrintedEnumEnd;
         bool hasPrintedRegexList;
+        bool isDebugging;
         std::string currentRegex;
         std::string currentReturnStatement;
         uint foundOCurly; // there could potentially be a couple
@@ -85,6 +86,7 @@ namespace Lexx {
                 {BEGINMAIN          ,"BEGIN MAIN"},
                 {COMMENT            ,"//[^\n]*[\n]"}, //
                 {BIGCOMMENT          ,"/[*]([^*/]|[*]+)*[*]/"},
+                {OR_EXPRESSION       ,"[\n\t ]*[|][\n\t ]*"},
                 {WHITESPACE         ,"[\t\n ]+"}, //
                 {OTHER              ,"[^\n]"}
         };
@@ -105,34 +107,46 @@ namespace Lexx {
             return shouldSwitchLexers;
         }
 
-        LexGenerator(bool debugging = false) {
+        virtual void streamToken(const std::string &s, uint regexMatch) override {
+            // dont do anything
+        }
+
+        LexGenerator(bool debugging = false,bool ideInput = false) {
 
 
 
-            currentRegexNumber = 0;
+            isDebugging = debugging;
+            currentRegexNumber =  nextOrLocation= 0 ;
             currentRegex = "";
             foundOBracket =
-            readingRegex =
-            hasPrintedEnumStart= foundOrExpression = hasPrintedRegexList =
+            readingRegex  =
+            hasPrintedEnumStart= readingOrExpression = hasPrintedRegexList =
             hasPrintedEnumEnd = false;
             foundOCurly = 0;
 
-            std::string debugBase = "";
-            if(debugging){
-                debugBase = "/home/josh/ClionProjects/JLexx/JLexx/LexLoader/";
+            std::string base = "";
+            if(ideInput){
+                base = "/home/josh/ClionProjects/JLexx/JLexx/LexLoader/";
+            }else{
+
+                base = std::string("/usr/share/JLexx/JLexx/LexLoader/");
             }
-            std::string lexMain = debugBase + "/GenFiles/LexMain.cpp";
-            std::string bridge = debugBase + "/GenFiles/BridgeHeader.h";
-            outFile = fopen(lexMain.c_str(),"w");
+            std::string lexMain = base + "GenFiles/LexMain.cpp";
+            std::string bridge = base + "GenFiles/BridgeHeader.h";
+            if(debugging) {
+                printf("Final LexMain path is %s \n",lexMain.c_str());
+                printf("Final bridge  path is %s \n",bridge.c_str());
+            }
+            outFile = fopen(lexMain.c_str(),"w+");
             if(outFile == NULL){
                 printf("Couldnt open %s\n",lexMain.c_str());
-                throw std::invalid_argument("") ;
+                throw std::invalid_argument("Couldn't open file") ;
             }
 
-            bridgeFile = fopen(bridge.c_str(),"w");
+            bridgeFile = fopen(bridge.c_str(),"w+");
             if(bridgeFile == NULL){
                 printf("Couldnt open %s\n",bridge.c_str());
-                throw std::invalid_argument("") ;
+                throw std::invalid_argument("Couldn't open file") ;
             }
             fprintf(bridgeFile,
                     "#include <iostream>\n"
@@ -273,7 +287,7 @@ namespace Lexx {
                     fprintf(stdout, "%s", myString.substr(d.startOfMatch, d.endOfMatch - d.startOfMatch).c_str());
 
                 }else {
-                    bool isRegexCharacter = (d.regexNumber == 4) || (this->foundOBracket && d.regexNumber == 3);
+                    bool isRegexCharacter = (d.regexNumber == 5) || (this->foundOBracket && d.regexNumber == 4);
                     if (isRegexCharacter) { // its a regex
 
                         switch (myString[d.startOfMatch]) {
@@ -301,8 +315,25 @@ namespace Lexx {
                             // start the regex
                             readingRegex = true;
                         }
-                    } else if (readingRegex) {
+                    } else if(d.regexNumber == 3 && readingRegex){
+                        // or expression
+                        // remember in order to read an or expression I need to put () around the expression lol
+                            if(!readingOrExpression) {
+                                readingOrExpression = true;
+                                currentRegex.insert(currentRegex.begin(),'(');
+
+                            }
+                                currentRegex.push_back('|');
+
+
+                    }else if (readingRegex) {
                         //printRegex(currentRegex);
+                        if(readingOrExpression){
+                            currentRegex.push_back(')');
+
+                            nextOrLocation = 0;
+                            readingOrExpression = false;
+                        }
                         reNameList.push_back({currentRegex,""});
                         currentRegex = "";
                         readingRegex = false;
@@ -345,14 +376,24 @@ namespace Lexx {
 
         bool match(string s){
             this->myString = std::move(s);
+            if(this->isDebugging) {
+                printf("Starting on first phase of parsing\n");
+            }
             bool res = stateLexer[stateLexerCurrent]->match(myString, false, false, this);
             shouldSwitchLexers = false;
             this->myString = myString.substr(offsetForNextLexer);
             offsetForNextLexer = 0;
+            if(this->isDebugging) {
+                printf("Starting on second phase of parsing\n");
+            }
             res |= stateLexer[stateLexerCurrent]->match(myString, false, false, this);
             shouldSwitchLexers = false;
             this->myString = myString.substr(offsetForNextLexer);
             offsetForNextLexer = 0;
+
+            if(this->isDebugging) {
+                printf("Starting on third phase of parsing\n");
+            }
             res |= stateLexer[stateLexerCurrent]->match(myString, false, false, this);
             shouldSwitchLexers = false;
             if(!hasPrintedRegexList){
@@ -361,6 +402,12 @@ namespace Lexx {
             }
             fclose(this->outFile);
             fclose(this->bridgeFile);
+            if(this->isDebugging) {
+                printf("Finished parsing input\n");
+            }
+            if(this->foundOCurly){
+                throw std::invalid_argument("Unmatched { !! check your code!\n");
+            }
             return res;
 
         }
@@ -371,8 +418,9 @@ namespace Lexx {
         }
 
 
-        bool foundOrExpression;
         uint currentRegexNumber;
+        bool readingOrExpression;
+        uint nextOrLocation;
     };
 
 

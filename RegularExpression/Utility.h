@@ -22,6 +22,23 @@ using namespace std;
 
 #define DEBUGGING
 
+
+#define JAssert(expression,message)\
+if(expression){\
+    fprintf(stderr,ANSI_COLOR_RED "Assertion failed\n" ANSI_COLOR_RESET);\
+    fprintf(stderr,ANSI_COLOR_RED "At function %s \n on File : %s and Line : %u\n" ANSI_COLOR_RESET,__PRETTY_FUNCTION__,__FILE__,__LINE__);\
+    fprintf(stderr,ANSI_COLOR_RED "Message %s\n" ANSI_COLOR_RESET,message);\
+    abort();\
+}\
+
+#define PRINTFUNCTION()\
+    printf(ANSI_COLOR_MAGENTA "Entering %s \n on File : %s and Line : %u\n" ANSI_COLOR_RESET,__PRETTY_FUNCTION__,__FILE__,__LINE__)
+#define ENTERING_FUNCTION()\
+    printf("Entering"); PRINTFUNCTION()
+
+#define LEAVING_FUNCTION()\
+    printf("Leaving");PRINTFUNCTION()
+
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_YELLOW  "\x1b[33m"

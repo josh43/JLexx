@@ -6,9 +6,13 @@ cd ${makeDir}
 
 #debugging uncomment
 #make
-make -f makeRun 1> /dev/null
-./LexMain < ${currDir}/$1
-make clean 1> /dev/null
+
+    make -f makeRun 1> ${currDir}/generatedBuild.log
+    cp LexMain ${currDir}/
+    ./LexMain < ${currDir}/$1
+    make clean 1> /dev/null
+
+
 
 
 

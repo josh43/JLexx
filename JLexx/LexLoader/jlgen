@@ -5,8 +5,60 @@ makeDir=/usr/share/JLexx/JLexx/LexLoader/
 currDir=${PWD}
 cd ${makeDir}
 
+# if you want it to show the output it produced run like this
+# jlGen INPUT_FILE debug
 #debugging uncomment
 #make
-make -f makeGen
-./LexGenMain < $1 > /dev/null
-make clean
+
+if [ $# -lt 1 ]
+then
+    echo "Improper usage please do jlGen lexInput.txt"
+else
+
+
+    if [ ! -f LexGenMain ];
+    then
+        make -f makeGen > /dev/null
+    fi
+
+    #"--debug=1"
+    # "stdin=true"
+    if [ ! -d GenFiles ]
+    then
+        rm -f -R GenFiles
+        mkdir GenFiles
+    fi
+    echo "Sending file ${currDir}/$1 to generate the lexer"
+    echo "Running ./LexGenMain --debug=true --stdin=true --ideInput=false in working directory ${PWD}" > ${currDir}/jlexxBuild.log
+    ./LexGenMain --debug=true --stdin=true < ${currDir}/$1 >> ${currDir}/jlexxBuild.log
+
+    if [ ! -f GenFiles/BridgeHeader.h ]
+    then
+        echo "Error generating file BridgeHeader.h check your input "
+        exit 1
+    fi
+    if [ ! -f GenFiles/LexMain.cpp ]
+    then
+        echo "Error generating file LexMain.cpp check your input "
+        exit 1
+    fi
+
+    if [ $# -gt 1 ]
+    then
+        # copy all files over
+        mkdir ${currDir}/JLDebug
+        cp GenFiles/* ${currDir}/JLDebug
+    fi
+
+
+    rm -f LexMain
+    cd LexRunner
+
+    make -f makeRun >> ${currDir}/jlexxBuild.log
+      if [ ! -f LexMain ]
+      then
+        echo "Error generating the lexxer check input file"
+      else
+        cp LexMain ${currDir}/
+      fi
+fi

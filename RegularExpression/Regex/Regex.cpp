@@ -116,7 +116,6 @@ namespace JRegex {
     void caseInsensative(std::string & str){
         string buffer;
         buffer.reserve(str.size() *4/3);
-        bool inBracket = false;
         for(unsigned int i = 0; i < buffer.size(); i++){
 
                 if(str[i] >= 'a' && str[i] <= 'z'){

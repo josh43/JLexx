@@ -1,0 +1,161 @@
+/*
+Make sure you have cd'd into the InstalDir and have done sudo ./install.sh
+Than to compile an input like this one run
+jlGen JLexxExample.txt
+
+and to run the lexer on input just do
+jlGen exInput.txt
+
+*/
+
+// From here all the way down tocan be any valid c/c++!!
+#include <stdlib.h>
+#include <string.h>
+
+// put whatever you want
+uint unique;
+uint wordCount =0;
+uint lineCount =0;
+// insert very useful function ... :|
+void helloWorld(){
+ printf("Hello world");
+}
+/* TYPE must be called JVAL but the contents of the union can by whatever are accepted by c++*/
+union JVAL {
+    int x;
+    int y;
+    char * text;
+}jval;
+/* instance must be called jval */
+
+/*
+    When matched this value will be filled
+    struct {
+        char * text;  // this will only be a pointer to the start of the match
+        uint start;   // thus to get the text you want to substr(text,start,end)
+        uint end;     // It is this way to allow more customization later on!
+    }jmatch;
+
+*/
+
+
+
+// There will be a 256 offset because I want to allow returning of characters
+// So NUM  will be defined as  1 << 8 + 1
+// So WORD will be defined as  1 << 8 + 2
+
+// BEGIIN TOKENS without the second I is a keyword and is used to define enums to be returned
+BEGIN TOKENS
+    NUMB         // == 257
+    MINUS        // == 258 This would be sort of confusing given that '-' is == 45
+    WORD        // == 258
+BEGIN DEFINITIONS
+/**/
+/****/
+/* what
+*/
+/*
+    definitions in the form of
+    +|a|b        {ACTION;}
+     means when matching + or a or b do ACTION
+
+*/
+
+/*Note it is wise to use the escape sequence for special characters or to place them in brackets if possible
+    ex. do \\- to match a dash
+    you have to escape the escape character so it can be read :|
+    [x] or \x will match an x  from the set X = {),(,\,|,[,],.} and others
+    \\] means read close right bracket literally
+    however [\\\\] means read one \
+
+*/
+
+     [\n]                           {
+                                        printf("matched a newline\n");return jmatch.text[0];
+                                    }
+     \\)+|\\.|\\-|}|{|\\||[\\\\]      {
+                                        printf("matched a simple character\n");
+                                        return jmatch.text[0];
+                                    }  // note this will create a copy of the character so it is ok to return but if you would return a JMatch.text this value could change later on!}
+
+     \\-                            {
+                                        printf("matched a minus\n");
+                                        return MINUS;
+                                    }
+
+     [a-zA-Z][a-zA-Z0-9]+           {
+                                      printf("matched a word\n");jval.text = strndup(jmatch.text,jmatch.end-jmatch.start); // Set JVal
+                                      return WORD;
+                                    }
+     [0-9]+                         {
+                                        printf("matched an integer\n");
+                                        jval.x = atoi(jmatch.text);
+                                        return NUMB;
+                                    }
+
+     [@]+                           { return NUMB;}
+     .                              {return jmatch.text[0];} // not found
+
+BEGIN MAIN
+
+void handle(uint type){
+            switch(type){
+                case NUMB:{
+                    break;
+                }case MINUS:{
+                    break;
+                }case WORD:{
+                    wordCount++;
+                    break;
+                }case '\n':{
+                    lineCount++;
+                }
+            }
+}
+// If main is defined than JYacc will not be used
+int main(){
+
+
+    /*
+     void compress(bool compress, bool debug = false);
+     void matchSTDIN(bool stream = false,bool debug = false)
+     If you put stream = true, then there is no need to call matchSTDIN()
+     compress makes the DFA compressed which saved a ton of memory, on simple DFA's for example
+     the one I use to parse this input, I had a compression ratio of 20, so I used about 5% as much mem as normal
+     The downfall is that when moving on states turns into
+     vector<vector<uint> > jumpTable
+     jumpTable[currentSate][inputCharacter] == some state
+     but on compression its
+     u_char compressedIndex = compressState.binSearch(inputCharacter);
+     return jumpTable[currentState][compressedIndex];
+
+     But it could still potentially be faster
+    */
+    // note it defaults to not compressing
+    // it will  also print out compression information
+    // you can grep it and search for
+    // "COMPRESSION RATIO -> Total space saved"
+
+
+    compress(true,true);
+    matchSTDIN(true,true);
+    // turns all debug flags on
+    setVerbose(true);
+// JVAL is the type but you use jval when passing information!
+    std::pair<JVAL,TokenType> next = jlnext();
+    // get the first token to check for inital endOfInput
+    printf("About to read input");
+    while(!endOfInput()){
+
+        handle(next.second);
+        next = jlnext();
+    }
+    if(next.second != std::numeric_limits<uint>::max()){
+        // check the last token It might be valid
+        handle(next.second);
+    }
+    printf("The linecount was %i and the wc was %i so cool!\n",lineCount,wordCount);
+
+    return 0;
+
+}
