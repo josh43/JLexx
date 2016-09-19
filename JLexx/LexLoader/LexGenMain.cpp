@@ -42,7 +42,7 @@ int main(int argc, char * argv[]) {
     }else{
         if(ideInput) {
             sL.match(FileLoader::fileToString(
-                    "/home/josh/ClionProjects/JLexx/JLexx/LexLoader/TestFiles/AsciiHTMLParser.jlx", debugging));
+                    "/home/josh/ClionProjects/JLexx/JLexx/LexLoader/TestFiles/Simple.txt", debugging));
         }
     }
 

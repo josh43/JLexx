@@ -26,14 +26,14 @@ namespace JRegex {
 
 
         struct DFAStateHelper{
-            set<Vertex *> fromState;
-            INFO stateType;
-            static const unsigned char HELPER_EPSILON = (1<<8) -1;
-            set<Vertex *> * transitions[256];
-            set<unsigned char> transitionsUsed;
-            unsigned int stateNumber;
+            INFO                                      stateType;
+            unsigned int                              stateNumber;
+            set<Vertex *>                             fromState;
+            set<Vertex *> *                           transitions[256];
+            set<unsigned char>                        transitionsUsed;
             vector<pair<unsigned char,unsigned int> > stateTransitions;
 
+            static const unsigned char HELPER_EPSILON = (1<<8) -1;
 
             ~DFAStateHelper(){
                 for(int i = 0 ; i < 256;i++){

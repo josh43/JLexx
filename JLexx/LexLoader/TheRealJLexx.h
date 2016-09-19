@@ -29,7 +29,6 @@ namespace JLexx{
         std::pair<JVAL,TokenType> builtStreamToken;
         bool foundToken;
         uint streamCurr;
-        uint streamCurr;
         char buff[1024];
         FILE * stdinFD;
         bool matchOne;
@@ -194,7 +193,7 @@ void compress(bool compress ,bool debug = false){
 void setVerbose(bool x){
     jl.verbose = x;
 }
-void matchSTDIN(bool stream = false,bool debug = false){
+void matchSTDIN(bool debug = false){
 
    // if(!stream){
         jl.matchSTDIN(debug);

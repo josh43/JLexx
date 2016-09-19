@@ -893,7 +893,6 @@ void helloWorld(){
 }
 /* TYPE must be called JVAL but the contents of the union can by whatever are accepted by c++*/
 union JVAL {
-    int x;
     int y;
     char * text;
 }jval;
@@ -912,120 +911,39 @@ union JVAL {
 
 
 // There will be a 256 offset because I want to allow returning of characters
-// So NUM  will be defined as  1 << 8 + 1
-// So WORD will be defined as  1 << 8 + 2
+
 
 // BEGIIN TOKENS without the second I is a keyword and is used to define enums to be returned
 BEGIN TOKENS
-    NUMB         // == 257
-    MINUS        // == 258 This would be sort of confusing given that '-' is == 45
-    WORD        // == 258
+    NUMB
 BEGIN DEFINITIONS
-/**/
-/****/
-/* what
-*/
-/*
-    definitions in the form of
-    +|a|b        {ACTION;}
-     means when matching + or a or b do ACTION
 
-*/
 
-/*Note it is wise to use the escape sequence for special characters or to place them in brackets if possible
-    ex. do \\- to match a dash
-    you have to escape the escape character so it can be read :|
-    [x] or \x will match an x  from the set X = {),(,\,|,[,],.} and others
-    \\] means read close right bracket literally
-    however [\\\\] means read one \
-
-*/
-
-     [\n]                           {
-                                        printf("matched a newline\n");return jmatch.text[0];
-                                    }
-     \\)+|\\.|\\-|}|{|\\||[\\\\]      {
-                                        printf("matched a simple character\n");
-                                        return jmatch.text[0];
-                                    }  // note this will create a copy of the character so it is ok to return but if you would return a JMatch.text this value could change later on!}
-
-     \\-                            {
-                                        printf("matched a minus\n");
-                                        return MINUS;
-                                    }
-
-     [a-zA-Z][a-zA-Z0-9]+           {
-                                      printf("matched a word\n");jval.text = strndup(jmatch.text,jmatch.end-jmatch.start); // Set JVal
-                                      return WORD;
-                                    }
-     [0-9]+                         {
-                                        printf("matched an integer\n");
-                                        jval.x = atoi(jmatch.text);
-                                        return NUMB;
-                                    }
-
-     [@]+                           { return NUMB;}
-     .                              {return jmatch.text[0];} // not found
+     [\n\t ][a-zA-Z]+                              {
+                                                    jval.text = strndup(jmatch.text,jmatch.end-jmatch.start);
+                                                    printf("Matched %s\n",jval.text);
+                                                    return jmatch.text[0];
+                                                    } // not found
+     [^\n]                                         {return jmatch.text[0];} // not found
 
 BEGIN MAIN
 
-void handle(uint type){
-            switch(type){
-                case NUMB:{
-                    break;
-                }case MINUS:{
-                    break;
-                }case WORD:{
-                    wordCount++;
-                    break;
-                }case '\n':{
-                    lineCount++;
-                }
-            }
-}
-// If main is defined than JYacc will not be used
+
 int main(){
 
 
-    /*
-     void compress(bool compress, bool debug = false);
-     void matchSTDIN(bool stream = false,bool debug = false)
-     If you put stream = true, then there is no need to call matchSTDIN()
-     compress makes the DFA compressed which saved a ton of memory, on simple DFA's for example
-     the one I use to parse this input, I had a compression ratio of 20, so I used about 5% as much mem as normal
-     The downfall is that when moving on states turns into
-     vector<vector<uint> > jumpTable
-     jumpTable[currentSate][inputCharacter] == some state
-     but on compression its
-     u_char compressedIndex = compressState.binSearch(inputCharacter);
-     return jumpTable[currentState][compressedIndex];
-
-     But it could still potentially be faster
-    */
-    // note it defaults to not compressing
-    // it will  also print out compression information
-    // you can grep it and search for
-    // "COMPRESSION RATIO -> Total space saved"
 
 
-    compress(true,true);
-    matchSTDIN(true,true);
+    matchSTDIN(true);
     // turns all debug flags on
     setVerbose(true);
-// JVAL is the type but you use jval when passing information!
     std::pair<JVAL,TokenType> next = jlnext();
-    // get the first token to check for inital endOfInput
     printf("About to read input");
     while(!endOfInput()){
-
-        handle(next.second);
         next = jlnext();
     }
     if(next.second != std::numeric_limits<uint>::max()){
-        // check the last token It might be valid
-        handle(next.second);
     }
-    printf("The linecount was %i and the wc was %i so cool!\n",lineCount,wordCount);
 
     return 0;
 
@@ -1621,18 +1539,6 @@ Matched i with Regex
 Matched n with Regex
 Matched t with Regex
 Matched   with Regex
-Matched x with Regex
-Matched ; with Regex
-Matched 
- with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched i with Regex
-Matched n with Regex
-Matched t with Regex
-Matched   with Regex
 Matched y with Regex
 Matched ; with Regex
 Matched 
@@ -2102,90 +2008,6 @@ Matched r with Regex
 Matched s with Regex
 Matched 
  with Regex
-Matched / with Regex
-Matched / with Regex
-Matched   with Regex
-Matched S with Regex
-Matched o with Regex
-Matched   with Regex
-Matched N with Regex
-Matched U with Regex
-Matched M with Regex
-Matched   with Regex
-Matched   with Regex
-Matched w with Regex
-Matched i with Regex
-Matched l with Regex
-Matched l with Regex
-Matched   with Regex
-Matched b with Regex
-Matched e with Regex
-Matched   with Regex
-Matched d with Regex
-Matched e with Regex
-Matched f with Regex
-Matched i with Regex
-Matched n with Regex
-Matched e with Regex
-Matched d with Regex
-Matched   with Regex
-Matched a with Regex
-Matched s with Regex
-Matched   with Regex
-Matched   with Regex
-Matched 1 with Regex
-Matched   with Regex
-Matched < with Regex
-Matched < with Regex
-Matched   with Regex
-Matched 8 with Regex
-Matched   with Regex
-Matched + with Regex
-Matched   with Regex
-Matched 1 with Regex
-Matched 
- with Regex
-Matched / with Regex
-Matched / with Regex
-Matched   with Regex
-Matched S with Regex
-Matched o with Regex
-Matched   with Regex
-Matched W with Regex
-Matched O with Regex
-Matched R with Regex
-Matched D with Regex
-Matched   with Regex
-Matched w with Regex
-Matched i with Regex
-Matched l with Regex
-Matched l with Regex
-Matched   with Regex
-Matched b with Regex
-Matched e with Regex
-Matched   with Regex
-Matched d with Regex
-Matched e with Regex
-Matched f with Regex
-Matched i with Regex
-Matched n with Regex
-Matched e with Regex
-Matched d with Regex
-Matched   with Regex
-Matched a with Regex
-Matched s with Regex
-Matched   with Regex
-Matched   with Regex
-Matched 1 with Regex
-Matched   with Regex
-Matched < with Regex
-Matched < with Regex
-Matched   with Regex
-Matched 8 with Regex
-Matched   with Regex
-Matched + with Regex
-Matched   with Regex
-Matched 2 with Regex
 Matched 
  with Regex
 Matched 
@@ -2291,319 +2113,20 @@ Matched   with Regex
 Matched   with Regex
 Matched   with Regex
 Matched NUMB with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched // == 257
- with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched MINUS with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched // == 258 This would be sort of confusing given that '-' is == 45
- with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched WORD with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched   with Regex
-Matched // == 258
+Matched 
  with Regex
 Matched BEGIN DEFINITIONS with Regex
 Starting on third phase of parsing
 Matched 
- with Regex
-Matched /**/ with Regex
-Matched 
- with Regex
-Matched /****/ with Regex
-Matched 
- with Regex
-Matched /* what
-*/ with Regex
-Matched 
- with Regex
-Matched /*
-    definitions in the form of
-    +|a|b        {ACTION;}
-     means when matching + or a or b do ACTION
 
-*/ with Regex
-Matched 
-
- with Regex
-Matched /*Note it is wise to use the escape sequence for special characters or to place them in brackets if possible
-    ex. do \\- to match a dash
-    you have to escape the escape character so it can be read :|
-    [x] or \x will match an x  from the set X = {),(,\,|,[,],.} and others
-    \\] means read close right bracket literally
-    however [\\\\] means read one \
-
-*/ with Regex
-Matched 
 
       with Regex
 Matched [ with Regex
 Matched \ with Regex
 Matched n with Regex
-Matched ] with Regex
-Matched                             with Regex
-Matched { with Regex
-{Matched 
-                                         with Regex
-
-                                        Matched p with Regex
-pMatched r with Regex
-rMatched i with Regex
-iMatched n with Regex
-nMatched t with Regex
-tMatched f with Regex
-fMatched ( with Regex
-(Matched " with Regex
-"Matched m with Regex
-mMatched a with Regex
-aMatched t with Regex
-tMatched c with Regex
-cMatched h with Regex
-hMatched e with Regex
-eMatched d with Regex
-dMatched   with Regex
- Matched a with Regex
-aMatched   with Regex
- Matched n with Regex
-nMatched e with Regex
-eMatched w with Regex
-wMatched l with Regex
-lMatched i with Regex
-iMatched n with Regex
-nMatched e with Regex
-eMatched \ with Regex
-\Matched n with Regex
-nMatched " with Regex
-"Matched ) with Regex
-)Matched ; with Regex
-;Matched r with Regex
-rMatched e with Regex
-eMatched t with Regex
-tMatched u with Regex
-uMatched r with Regex
-rMatched n with Regex
-nMatched   with Regex
- Matched j with Regex
-jMatched m with Regex
-mMatched a with Regex
-aMatched t with Regex
-tMatched c with Regex
-cMatched h with Regex
-hMatched . with Regex
-.Matched t with Regex
-tMatched e with Regex
-eMatched x with Regex
-xMatched t with Regex
-tMatched [ with Regex
-[Matched 0 with Regex
-0Matched ] with Regex
-]Matched ; with Regex
-;Matched 
-                                     with Regex
-
-                                    Matched } with Regex
-Matched 
-      with Regex
 Matched \ with Regex
-Matched \ with Regex
-Matched ) with Regex
-Matched + with Regex
-Matched | with Regex
-Matched \ with Regex
-Matched \ with Regex
-Matched . with Regex
-Matched | with Regex
-Matched \ with Regex
-Matched \ with Regex
-Matched - with Regex
-Matched | with Regex
-Matched } with Regex
-Matched | with Regex
-Matched { with Regex
-Matched | with Regex
-Matched \ with Regex
-Matched \ with Regex
-Matched | with Regex
-Matched | with Regex
-Matched [ with Regex
-Matched \ with Regex
-Matched \ with Regex
-Matched \ with Regex
-Matched \ with Regex
-Matched ] with Regex
-Matched        with Regex
-Matched { with Regex
-{Matched 
-                                         with Regex
-
-                                        Matched p with Regex
-pMatched r with Regex
-rMatched i with Regex
-iMatched n with Regex
-nMatched t with Regex
-tMatched f with Regex
-fMatched ( with Regex
-(Matched " with Regex
-"Matched m with Regex
-mMatched a with Regex
-aMatched t with Regex
-tMatched c with Regex
-cMatched h with Regex
-hMatched e with Regex
-eMatched d with Regex
-dMatched   with Regex
- Matched a with Regex
-aMatched   with Regex
- Matched s with Regex
-sMatched i with Regex
-iMatched m with Regex
-mMatched p with Regex
-pMatched l with Regex
-lMatched e with Regex
-eMatched   with Regex
- Matched c with Regex
-cMatched h with Regex
-hMatched a with Regex
-aMatched r with Regex
-rMatched a with Regex
-aMatched c with Regex
-cMatched t with Regex
-tMatched e with Regex
-eMatched r with Regex
-rMatched \ with Regex
-\Matched n with Regex
-nMatched " with Regex
-"Matched ) with Regex
-)Matched ; with Regex
-;Matched 
-                                         with Regex
-
-                                        Matched r with Regex
-rMatched e with Regex
-eMatched t with Regex
-tMatched u with Regex
-uMatched r with Regex
-rMatched n with Regex
-nMatched   with Regex
- Matched j with Regex
-jMatched m with Regex
-mMatched a with Regex
-aMatched t with Regex
-tMatched c with Regex
-cMatched h with Regex
-hMatched . with Regex
-.Matched t with Regex
-tMatched e with Regex
-eMatched x with Regex
-xMatched t with Regex
-tMatched [ with Regex
-[Matched 0 with Regex
-0Matched ] with Regex
-]Matched ; with Regex
-;Matched 
-                                     with Regex
-
-                                    Matched } with Regex
-Matched    with Regex
-Matched // note this will create a copy of the character so it is ok to return but if you would return a JMatch.text this value could change later on!}
- with Regex
-Matched 
-      with Regex
-Matched \ with Regex
-Matched \ with Regex
-Matched - with Regex
-Matched                              with Regex
-Matched { with Regex
-{Matched 
-                                         with Regex
-
-                                        Matched p with Regex
-pMatched r with Regex
-rMatched i with Regex
-iMatched n with Regex
-nMatched t with Regex
-tMatched f with Regex
-fMatched ( with Regex
-(Matched " with Regex
-"Matched m with Regex
-mMatched a with Regex
-aMatched t with Regex
-tMatched c with Regex
-cMatched h with Regex
-hMatched e with Regex
-eMatched d with Regex
-dMatched   with Regex
- Matched a with Regex
-aMatched   with Regex
- Matched m with Regex
-mMatched i with Regex
-iMatched n with Regex
-nMatched u with Regex
-uMatched s with Regex
-sMatched \ with Regex
-\Matched n with Regex
-nMatched " with Regex
-"Matched ) with Regex
-)Matched ; with Regex
-;Matched 
-                                         with Regex
-
-                                        Matched r with Regex
-rMatched e with Regex
-eMatched t with Regex
-tMatched u with Regex
-uMatched r with Regex
-rMatched n with Regex
-nMatched   with Regex
- Matched M with Regex
-MMatched I with Regex
-IMatched N with Regex
-NMatched U with Regex
-UMatched S with Regex
-SMatched ; with Regex
-;Matched 
-                                     with Regex
-
-                                    Matched } with Regex
-Matched 
-
-      with Regex
-Matched [ with Regex
-Matched a with Regex
-Matched - with Regex
-Matched z with Regex
-Matched A with Regex
-Matched - with Regex
-Matched Z with Regex
+Matched t with Regex
+Matched   with Regex
 Matched ] with Regex
 Matched [ with Regex
 Matched a with Regex
@@ -2612,44 +2135,14 @@ Matched z with Regex
 Matched A with Regex
 Matched - with Regex
 Matched Z with Regex
-Matched 0 with Regex
-Matched - with Regex
-Matched 9 with Regex
 Matched ] with Regex
 Matched + with Regex
-Matched             with Regex
+Matched                                with Regex
 Matched { with Regex
 {Matched 
-                                       with Regex
+                                                     with Regex
 
-                                      Matched p with Regex
-pMatched r with Regex
-rMatched i with Regex
-iMatched n with Regex
-nMatched t with Regex
-tMatched f with Regex
-fMatched ( with Regex
-(Matched " with Regex
-"Matched m with Regex
-mMatched a with Regex
-aMatched t with Regex
-tMatched c with Regex
-cMatched h with Regex
-hMatched e with Regex
-eMatched d with Regex
-dMatched   with Regex
- Matched a with Regex
-aMatched   with Regex
- Matched w with Regex
-wMatched o with Regex
-oMatched r with Regex
-rMatched d with Regex
-dMatched \ with Regex
-\Matched n with Regex
-nMatched " with Regex
-"Matched ) with Regex
-)Matched ; with Regex
-;Matched j with Regex
+                                                    Matched j with Regex
 jMatched v with Regex
 vMatched a with Regex
 aMatched l with Regex
@@ -2706,41 +2199,10 @@ aMatched r with Regex
 rMatched t with Regex
 tMatched ) with Regex
 )Matched ; with Regex
-;Matched   with Regex
- Matched // Set JVal
- with Regex
-// Set JVal
-Matched                                        with Regex
-                                      Matched r with Regex
-rMatched e with Regex
-eMatched t with Regex
-tMatched u with Regex
-uMatched r with Regex
-rMatched n with Regex
-nMatched   with Regex
- Matched W with Regex
-WMatched O with Regex
-OMatched R with Regex
-RMatched D with Regex
-DMatched ; with Regex
 ;Matched 
-                                     with Regex
+                                                     with Regex
 
-                                    Matched } with Regex
-Matched 
-      with Regex
-Matched [ with Regex
-Matched 0 with Regex
-Matched - with Regex
-Matched 9 with Regex
-Matched ] with Regex
-Matched + with Regex
-Matched                           with Regex
-Matched { with Regex
-{Matched 
-                                         with Regex
-
-                                        Matched p with Regex
+                                                    Matched p with Regex
 pMatched r with Regex
 rMatched i with Regex
 iMatched n with Regex
@@ -2748,47 +2210,42 @@ nMatched t with Regex
 tMatched f with Regex
 fMatched ( with Regex
 (Matched " with Regex
-"Matched m with Regex
-mMatched a with Regex
+"Matched M with Regex
+MMatched a with Regex
 aMatched t with Regex
 tMatched c with Regex
 cMatched h with Regex
 hMatched e with Regex
 eMatched d with Regex
 dMatched   with Regex
- Matched a with Regex
-aMatched n with Regex
-nMatched   with Regex
- Matched i with Regex
-iMatched n with Regex
-nMatched t with Regex
-tMatched e with Regex
-eMatched g with Regex
-gMatched e with Regex
-eMatched r with Regex
-rMatched \ with Regex
+ Matched % with Regex
+%Matched s with Regex
+sMatched \ with Regex
 \Matched n with Regex
 nMatched " with Regex
-"Matched ) with Regex
-)Matched ; with Regex
-;Matched 
-                                         with Regex
-
-                                        Matched j with Regex
+"Matched , with Regex
+,Matched j with Regex
 jMatched v with Regex
 vMatched a with Regex
 aMatched l with Regex
 lMatched . with Regex
-.Matched x with Regex
-xMatched   with Regex
- Matched = with Regex
-=Matched   with Regex
- Matched a with Regex
-aMatched t with Regex
-tMatched o with Regex
-oMatched i with Regex
-iMatched ( with Regex
-(Matched j with Regex
+.Matched t with Regex
+tMatched e with Regex
+eMatched x with Regex
+xMatched t with Regex
+tMatched ) with Regex
+)Matched ; with Regex
+;Matched 
+                                                     with Regex
+
+                                                    Matched r with Regex
+rMatched e with Regex
+eMatched t with Regex
+tMatched u with Regex
+uMatched r with Regex
+rMatched n with Regex
+nMatched   with Regex
+ Matched j with Regex
 jMatched m with Regex
 mMatched a with Regex
 aMatched t with Regex
@@ -2799,54 +2256,24 @@ hMatched . with Regex
 tMatched e with Regex
 eMatched x with Regex
 xMatched t with Regex
-tMatched ) with Regex
-)Matched ; with Regex
+tMatched [ with Regex
+[Matched 0 with Regex
+0Matched ] with Regex
+]Matched ; with Regex
 ;Matched 
-                                         with Regex
+                                                     with Regex
 
-                                        Matched r with Regex
-rMatched e with Regex
-eMatched t with Regex
-tMatched u with Regex
-uMatched r with Regex
-rMatched n with Regex
-nMatched   with Regex
- Matched N with Regex
-NMatched U with Regex
-UMatched M with Regex
-MMatched B with Regex
-BMatched ; with Regex
-;Matched 
-                                     with Regex
-
-                                    Matched } with Regex
-Matched 
-
-      with Regex
+                                                    Matched } with Regex
+Matched   with Regex
+Matched // not found
+ with Regex
+Matched       with Regex
 Matched [ with Regex
-Matched @ with Regex
+Matched ^ with Regex
+Matched \ with Regex
+Matched n with Regex
 Matched ] with Regex
-Matched + with Regex
-Matched                             with Regex
-Matched { with Regex
-{Matched   with Regex
- Matched r with Regex
-rMatched e with Regex
-eMatched t with Regex
-tMatched u with Regex
-uMatched r with Regex
-rMatched n with Regex
-nMatched   with Regex
- Matched N with Regex
-NMatched U with Regex
-UMatched M with Regex
-MMatched B with Regex
-BMatched ; with Regex
-;Matched } with Regex
-Matched 
-      with Regex
-Matched . with Regex
-Matched                                with Regex
+Matched                                           with Regex
 Matched { with Regex
 {Matched r with Regex
 rMatched e with Regex
@@ -2879,165 +2306,7 @@ Matched
 Matched BEGIN MAIN with Regex
 Matched 
 
- with Regex
-Matched v with Regex
-Matched o with Regex
-Matched i with Regex
-Matched d with Regex
-Matched   with Regex
-Matched h with Regex
-Matched a with Regex
-Matched n with Regex
-Matched d with Regex
-Matched l with Regex
-Matched e with Regex
-Matched ( with Regex
-Matched u with Regex
-Matched i with Regex
-Matched n with Regex
-Matched t with Regex
-Matched   with Regex
-Matched t with Regex
-Matched y with Regex
-Matched p with Regex
-Matched e with Regex
-Matched ) with Regex
-Matched { with Regex
-Matched 
-             with Regex
-Matched s with Regex
-Matched w with Regex
-Matched i with Regex
-Matched t with Regex
-Matched c with Regex
-Matched h with Regex
-Matched ( with Regex
-Matched t with Regex
-Matched y with Regex
-Matched p with Regex
-Matched e with Regex
-Matched ) with Regex
-Matched { with Regex
-Matched 
-                 with Regex
-Matched c with Regex
-Matched a with Regex
-Matched s with Regex
-Matched e with Regex
-Matched   with Regex
-Matched N with Regex
-Matched U with Regex
-Matched M with Regex
-Matched B with Regex
-Matched : with Regex
-Matched { with Regex
-Matched 
-                     with Regex
-Matched b with Regex
-Matched r with Regex
-Matched e with Regex
-Matched a with Regex
-Matched k with Regex
-Matched ; with Regex
-Matched 
-                 with Regex
-Matched } with Regex
-Matched c with Regex
-Matched a with Regex
-Matched s with Regex
-Matched e with Regex
-Matched   with Regex
-Matched M with Regex
-Matched I with Regex
-Matched N with Regex
-Matched U with Regex
-Matched S with Regex
-Matched : with Regex
-Matched { with Regex
-Matched 
-                     with Regex
-Matched b with Regex
-Matched r with Regex
-Matched e with Regex
-Matched a with Regex
-Matched k with Regex
-Matched ; with Regex
-Matched 
-                 with Regex
-Matched } with Regex
-Matched c with Regex
-Matched a with Regex
-Matched s with Regex
-Matched e with Regex
-Matched   with Regex
-Matched W with Regex
-Matched O with Regex
-Matched R with Regex
-Matched D with Regex
-Matched : with Regex
-Matched { with Regex
-Matched 
-                     with Regex
-Matched w with Regex
-Matched o with Regex
-Matched r with Regex
-Matched d with Regex
-Matched C with Regex
-Matched o with Regex
-Matched u with Regex
-Matched n with Regex
-Matched t with Regex
-Matched + with Regex
-Matched + with Regex
-Matched ; with Regex
-Matched 
-                     with Regex
-Matched b with Regex
-Matched r with Regex
-Matched e with Regex
-Matched a with Regex
-Matched k with Regex
-Matched ; with Regex
-Matched 
-                 with Regex
-Matched } with Regex
-Matched c with Regex
-Matched a with Regex
-Matched s with Regex
-Matched e with Regex
-Matched   with Regex
-Matched ' with Regex
-Matched \ with Regex
-Matched n with Regex
-Matched ' with Regex
-Matched : with Regex
-Matched { with Regex
-Matched 
-                     with Regex
-Matched l with Regex
-Matched i with Regex
-Matched n with Regex
-Matched e with Regex
-Matched C with Regex
-Matched o with Regex
-Matched u with Regex
-Matched n with Regex
-Matched t with Regex
-Matched + with Regex
-Matched + with Regex
-Matched ; with Regex
-Matched 
-                 with Regex
-Matched } with Regex
-Matched 
-             with Regex
-Matched } with Regex
-Matched 
- with Regex
-Matched } with Regex
-Matched 
- with Regex
-Matched // If main is defined than JYacc will not be used
+
  with Regex
 Matched i with Regex
 Matched n with Regex
@@ -3053,59 +2322,8 @@ Matched { with Regex
 Matched 
 
 
-     with Regex
-Matched /*
-     void compress(bool compress, bool debug = false);
-     void matchSTDIN(bool stream = false,bool debug = false)
-     If you put stream = true, then there is no need to call matchSTDIN()
-     compress makes the DFA compressed which saved a ton of memory, on simple DFA's for example
-     the one I use to parse this input, I had a compression ratio of 20, so I used about 5% as much mem as normal
-     The downfall is that when moving on states turns into
-     vector<vector<uint> > jumpTable
-     jumpTable[currentSate][inputCharacter] == some state
-     but on compression its
-     u_char compressedIndex = compressState.binSearch(inputCharacter);
-     return jumpTable[currentState][compressedIndex];
 
-     But it could still potentially be faster
-    */ with Regex
-Matched 
-     with Regex
-Matched // note it defaults to not compressing
- with Regex
-Matched      with Regex
-Matched // it will  also print out compression information
- with Regex
-Matched      with Regex
-Matched // you can grep it and search for
- with Regex
-Matched      with Regex
-Matched // "COMPRESSION RATIO -> Total space saved"
- with Regex
-Matched 
 
-     with Regex
-Matched c with Regex
-Matched o with Regex
-Matched m with Regex
-Matched p with Regex
-Matched r with Regex
-Matched e with Regex
-Matched s with Regex
-Matched s with Regex
-Matched ( with Regex
-Matched t with Regex
-Matched r with Regex
-Matched u with Regex
-Matched e with Regex
-Matched , with Regex
-Matched t with Regex
-Matched r with Regex
-Matched u with Regex
-Matched e with Regex
-Matched ) with Regex
-Matched ; with Regex
-Matched 
      with Regex
 Matched m with Regex
 Matched a with Regex
@@ -3118,11 +2336,6 @@ Matched D with Regex
 Matched I with Regex
 Matched N with Regex
 Matched ( with Regex
-Matched t with Regex
-Matched r with Regex
-Matched u with Regex
-Matched e with Regex
-Matched , with Regex
 Matched t with Regex
 Matched r with Regex
 Matched u with Regex
@@ -3152,10 +2365,7 @@ Matched e with Regex
 Matched ) with Regex
 Matched ; with Regex
 Matched 
- with Regex
-Matched // JVAL is the type but you use jval when passing information!
- with Regex
-Matched      with Regex
+     with Regex
 Matched s with Regex
 Matched t with Regex
 Matched d with Regex
@@ -3200,9 +2410,6 @@ Matched ) with Regex
 Matched ; with Regex
 Matched 
      with Regex
-Matched // get the first token to check for inital endOfInput
- with Regex
-Matched      with Regex
 Matched p with Regex
 Matched r with Regex
 Matched i with Regex
@@ -3256,29 +2463,6 @@ Matched ( with Regex
 Matched ) with Regex
 Matched ) with Regex
 Matched { with Regex
-Matched 
-
-         with Regex
-Matched h with Regex
-Matched a with Regex
-Matched n with Regex
-Matched d with Regex
-Matched l with Regex
-Matched e with Regex
-Matched ( with Regex
-Matched n with Regex
-Matched e with Regex
-Matched x with Regex
-Matched t with Regex
-Matched . with Regex
-Matched s with Regex
-Matched e with Regex
-Matched c with Regex
-Matched o with Regex
-Matched n with Regex
-Matched d with Regex
-Matched ) with Regex
-Matched ; with Regex
 Matched 
          with Regex
 Matched n with Regex
@@ -3355,115 +2539,8 @@ Matched ) with Regex
 Matched ) with Regex
 Matched { with Regex
 Matched 
-         with Regex
-Matched // check the last token It might be valid
- with Regex
-Matched          with Regex
-Matched h with Regex
-Matched a with Regex
-Matched n with Regex
-Matched d with Regex
-Matched l with Regex
-Matched e with Regex
-Matched ( with Regex
-Matched n with Regex
-Matched e with Regex
-Matched x with Regex
-Matched t with Regex
-Matched . with Regex
-Matched s with Regex
-Matched e with Regex
-Matched c with Regex
-Matched o with Regex
-Matched n with Regex
-Matched d with Regex
-Matched ) with Regex
-Matched ; with Regex
-Matched 
      with Regex
 Matched } with Regex
-Matched 
-     with Regex
-Matched p with Regex
-Matched r with Regex
-Matched i with Regex
-Matched n with Regex
-Matched t with Regex
-Matched f with Regex
-Matched ( with Regex
-Matched " with Regex
-Matched T with Regex
-Matched h with Regex
-Matched e with Regex
-Matched   with Regex
-Matched l with Regex
-Matched i with Regex
-Matched n with Regex
-Matched e with Regex
-Matched c with Regex
-Matched o with Regex
-Matched u with Regex
-Matched n with Regex
-Matched t with Regex
-Matched   with Regex
-Matched w with Regex
-Matched a with Regex
-Matched s with Regex
-Matched   with Regex
-Matched % with Regex
-Matched i with Regex
-Matched   with Regex
-Matched a with Regex
-Matched n with Regex
-Matched d with Regex
-Matched   with Regex
-Matched t with Regex
-Matched h with Regex
-Matched e with Regex
-Matched   with Regex
-Matched w with Regex
-Matched c with Regex
-Matched   with Regex
-Matched w with Regex
-Matched a with Regex
-Matched s with Regex
-Matched   with Regex
-Matched % with Regex
-Matched i with Regex
-Matched   with Regex
-Matched s with Regex
-Matched o with Regex
-Matched   with Regex
-Matched c with Regex
-Matched o with Regex
-Matched o with Regex
-Matched l with Regex
-Matched ! with Regex
-Matched \ with Regex
-Matched n with Regex
-Matched " with Regex
-Matched , with Regex
-Matched l with Regex
-Matched i with Regex
-Matched n with Regex
-Matched e with Regex
-Matched C with Regex
-Matched o with Regex
-Matched u with Regex
-Matched n with Regex
-Matched t with Regex
-Matched , with Regex
-Matched w with Regex
-Matched o with Regex
-Matched r with Regex
-Matched d with Regex
-Matched C with Regex
-Matched o with Regex
-Matched u with Regex
-Matched n with Regex
-Matched t with Regex
-Matched ) with Regex
-Matched ; with Regex
 Matched 
 
      with Regex
@@ -3482,5 +2559,4 @@ Matched
 Matched } with Regex
 Finished parsing input
 g++ -Wall -std=c++11 -c /usr/share/JLexx/JLexx/LexLoader/GenFiles/LexMain.cpp
-g++ -Wall -std=c++11 -c /usr/share/JLexx/JLexx/../RegularExpression/Utility.cpp
 g++ -Wall -std=c++11 LexMain.o Utility.o -o LexMain

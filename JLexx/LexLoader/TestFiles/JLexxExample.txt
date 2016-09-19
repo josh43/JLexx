@@ -22,7 +22,6 @@ void helloWorld(){
 }
 /* TYPE must be called JVAL but the contents of the union can by whatever are accepted by c++*/
 union JVAL {
-    int x;
     int y;
     char * text;
 }jval;
@@ -41,19 +40,15 @@ union JVAL {
 
 
 // There will be a 256 offset because I want to allow returning of characters
-// So NUM  will be defined as  1 << 8 + 1
-// So WORD will be defined as  1 << 8 + 2
+
 
 // BEGIIN TOKENS without the second I is a keyword and is used to define enums to be returned
 BEGIN TOKENS
     NUMB         // == 257
     MINUS        // == 258 This would be sort of confusing given that '-' is == 45
-    WORD        // == 258
+    WORD         // == 258
 BEGIN DEFINITIONS
-/**/
-/****/
-/* what
-*/
+
 /*
     definitions in the form of
     +|a|b        {ACTION;}
@@ -62,9 +57,8 @@ BEGIN DEFINITIONS
 */
 
 /*Note it is wise to use the escape sequence for special characters or to place them in brackets if possible
-    ex. do \\- to match a dash
-    you have to escape the escape character so it can be read :|
-    [x] or \x will match an x  from the set X = {),(,\,|,[,],.} and others
+    or use double backslash do \\- to match a dash
+    you have to escape the escape character so it can be read
     \\] means read close right bracket literally
     however [\\\\] means read one \
 
@@ -112,15 +106,16 @@ void handle(uint type){
                 }
             }
 }
-// If main is defined than JYacc will not be used
+// If main is defined than JSynt(in testing) will not be used
 int main(){
 
 
     /*
      void compress(bool compress, bool debug = false);
      void matchSTDIN(bool stream = false,bool debug = false)
-     If you put stream = true, then there is no need to call matchSTDIN()
-     compress makes the DFA compressed which saved a ton of memory, on simple DFA's for example
+     The stream is not yet working
+     the compress flag will compress the dfa
+     which saved a ton of memory, on simple DFA's for example
      the one I use to parse this input, I had a compression ratio of 20, so I used about 5% as much mem as normal
      The downfall is that when moving on states turns into
      vector<vector<uint> > jumpTable
@@ -132,7 +127,7 @@ int main(){
      But it could still potentially be faster
     */
     // note it defaults to not compressing
-    // it will  also print out compression information
+    // it will  also print out compression information if you set the compression
     // you can grep it and search for
     // "COMPRESSION RATIO -> Total space saved"
 
@@ -141,7 +136,7 @@ int main(){
     matchSTDIN(true,true);
     // turns all debug flags on
     setVerbose(true);
-// JVAL is the type but you use jval when passing information!
+    // JVAL is the type but you use jval when passing information!
     std::pair<JVAL,TokenType> next = jlnext();
     // get the first token to check for inital endOfInput
     printf("About to read input");

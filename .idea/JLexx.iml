@@ -2,9 +2,23 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/FileLoader.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/DFABuilderHelper.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/RestBuilder/Test/Test.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/RestBuilder/RestGenerator.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/RestBuilder/RestGenHelper.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/RestBuilder/RestBuilder.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/RestBuilder/RestToken.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/RegexToDFABuilder.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/LexLoader/LexGenerator.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/JLexx/LexLoader/GenFiles/LexMain.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JLexx/MatchHandler.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RegularExpression/Parser/RegularErrorMessage.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RegularExpression/Utility.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RegularExpression/Regex/Regex.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/RegularExpression/Regex/Regex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/RegularExpression/Utility.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RegularExpression/RegexIncludeAll.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
